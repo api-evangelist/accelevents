@@ -1,0 +1,187 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Accelevents Open API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "apikey": {
+        "key": "AUTHENTICATION",
+        "value": "{{apiKey}}",
+        "in": "header"
+      }
+    }
+  },
+  "items": [
+    {
+      "info": { "name": "Events", "type": "folder" },
+      "items": [
+        {
+          "info": { "name": "Get event and design details", "type": "http" },
+          "http": {
+            "method": "GET",
+            "url": "https://api.accelevents.com/rest/host/event/:eventUrl/eventDetails",
+            "params": [
+              { "name": "eventUrl", "value": "", "type": "path", "description": "Unique event URL identifier." }
+            ]
+          },
+          "docs": "Retrieves event and design details by unique event URL. Confirmed endpoint."
+        },
+        {
+          "info": { "name": "Check recurring event status", "type": "http" },
+          "http": {
+            "method": "GET",
+            "url": "https://api.accelevents.com/rest/host/event/:eventUrl/recurringStatus",
+            "params": [
+              { "name": "eventUrl", "value": "", "type": "path", "description": "Unique event URL identifier." }
+            ]
+          },
+          "docs": "Returns whether an event recurs. MODELED path - not confirmed in the public reference."
+        }
+      ]
+    },
+    {
+      "info": { "name": "Attendees", "type": "folder" },
+      "items": [
+        {
+          "info": { "name": "Get all attendees", "type": "http" },
+          "http": {
+            "method": "GET",
+            "url": "https://api.accelevents.com/rest/events/:eventUrl/staff/allAttendees?page=0&size=100",
+            "params": [
+              { "name": "eventUrl", "value": "", "type": "path", "description": "Unique event URL identifier." },
+              { "name": "page", "value": "0", "type": "query", "description": "Zero-indexed page number." },
+              { "name": "size", "value": "100", "type": "query", "description": "Records per page." }
+            ]
+          },
+          "docs": "Lists attendees with pagination and search. Confirmed endpoint."
+        },
+        {
+          "info": { "name": "Get filtered people list", "type": "http" },
+          "http": {
+            "method": "GET",
+            "url": "https://api.accelevents.com/rest/events/:eventUrl/staff/people",
+            "params": [
+              { "name": "eventUrl", "value": "", "type": "path", "description": "Unique event URL identifier." }
+            ]
+          },
+          "docs": "Fetches attendees filtered by company, job title, interests. MODELED path - not confirmed."
+        }
+      ]
+    },
+    {
+      "info": { "name": "Orders", "type": "folder" },
+      "items": [
+        {
+          "info": { "name": "Get ticketing orders", "type": "http" },
+          "http": {
+            "method": "GET",
+            "url": "https://api.accelevents.com/rest/events/:eventUrl/staff/orders?page=0&size=10",
+            "params": [
+              { "name": "eventUrl", "value": "", "type": "path", "description": "Unique event URL identifier." },
+              { "name": "page", "value": "0", "type": "query", "description": "Zero-indexed page number." },
+              { "name": "size", "value": "10", "type": "query", "description": "Records per page." }
+            ]
+          },
+          "docs": "Retrieves ticketing and add-on orders with search, date, pagination filters. Confirmed endpoint."
+        },
+        {
+          "info": { "name": "Get ticketing sales data", "type": "http" },
+          "http": {
+            "method": "GET",
+            "url": "https://api.accelevents.com/rest/events/:eventUrl/staff/salesData",
+            "params": [
+              { "name": "eventUrl", "value": "", "type": "path", "description": "Unique event URL identifier." }
+            ]
+          },
+          "docs": "Dashboard ticket and add-on sales figures. MODELED path - not confirmed."
+        }
+      ]
+    },
+    {
+      "info": { "name": "Tickets", "type": "folder" },
+      "items": [
+        {
+          "info": { "name": "Update ticket holder attributes by barcode ID", "type": "http" },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.accelevents.com/rest/events/:eventUrl/staff/ticketHolders/:barcodeId",
+            "params": [
+              { "name": "eventUrl", "value": "", "type": "path", "description": "Unique event URL identifier." },
+              { "name": "barcodeId", "value": "", "type": "path", "description": "Ticket holder barcode ID." }
+            ],
+            "body": { "type": "json", "data": "{}" }
+          },
+          "docs": "Updates ticket-holder attributes by barcode ID. MODELED path - not confirmed."
+        },
+        {
+          "info": { "name": "Exchange ticket type", "type": "http" },
+          "http": {
+            "method": "POST",
+            "url": "https://api.accelevents.com/rest/events/:eventUrl/staff/exchangeTicketType",
+            "params": [
+              { "name": "eventUrl", "value": "", "type": "path", "description": "Unique event URL identifier." }
+            ],
+            "body": { "type": "json", "data": "{\n  \"barcodeId\": \"\",\n  \"newTicketTypeId\": 0\n}" }
+          },
+          "docs": "Swaps ticket type for an attendee. MODELED path - not confirmed."
+        }
+      ]
+    },
+    {
+      "info": { "name": "Sessions", "type": "folder" },
+      "items": [
+        {
+          "info": { "name": "Get sessions list", "type": "http" },
+          "http": {
+            "method": "GET",
+            "url": "https://api.accelevents.com/rest/events/:eventUrl/staff/sessions",
+            "params": [
+              { "name": "eventUrl", "value": "", "type": "path", "description": "Unique event URL identifier." }
+            ]
+          },
+          "docs": "Lists an event's sessions (admin view). MODELED path - not confirmed."
+        },
+        {
+          "info": { "name": "Update session", "type": "http" },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.accelevents.com/rest/events/:eventUrl/staff/sessions/:sessionId",
+            "params": [
+              { "name": "eventUrl", "value": "", "type": "path", "description": "Unique event URL identifier." },
+              { "name": "sessionId", "value": "", "type": "path", "description": "Session identifier." }
+            ],
+            "body": { "type": "json", "data": "{}" }
+          },
+          "docs": "Updates a session's details and visibility. MODELED path - not confirmed."
+        },
+        {
+          "info": { "name": "Get speakers list", "type": "http" },
+          "http": {
+            "method": "GET",
+            "url": "https://api.accelevents.com/rest/events/:eventUrl/staff/speakers",
+            "params": [
+              { "name": "eventUrl", "value": "", "type": "path", "description": "Unique event URL identifier." }
+            ]
+          },
+          "docs": "Lists speakers with pagination. MODELED path - not confirmed."
+        },
+        {
+          "info": { "name": "Create speaker", "type": "http" },
+          "http": {
+            "method": "POST",
+            "url": "https://api.accelevents.com/rest/events/:eventUrl/staff/speakers",
+            "params": [
+              { "name": "eventUrl", "value": "", "type": "path", "description": "Unique event URL identifier." }
+            ],
+            "body": { "type": "json", "data": "{}" }
+          },
+          "docs": "Adds a speaker to an event. MODELED path - not confirmed."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

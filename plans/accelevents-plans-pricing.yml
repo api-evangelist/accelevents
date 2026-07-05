@@ -1,0 +1,125 @@
+specification: API Commons Plans
+specificationVersion: '0.1'
+schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/Plans
+provider: Accelevents
+providerId: accelevents
+created: '2026-07-05'
+modified: '2026-07-05'
+reconciled: false
+tags:
+- Event Management
+- Ticketing
+- Events
+- Registration
+- Plans
+description: >-
+  Accelevents sells subscription plans for its event management and ticketing
+  platform rather than a standalone API product. The Open API and webhooks are a
+  platform feature bundled into the paid tiers (per the pricing page, "API &
+  Webhooks" is included from the Business plan and above), so API access is gated
+  by subscription rather than metered per call. Published starting prices are
+  Professional from $7,500 (single event) and Business from $13,500 (unlimited
+  events); Enterprise and White Label are custom-quoted. Accelevents has also
+  historically offered transactional pricing (around $1 per registrant plus ~1%
+  of transaction value) for pay-as-you-go ticketing; treat those figures as
+  unconfirmed and verify current terms on the pricing page.
+notes: >-
+  API key generation requires owner-level access to the account (Edit Enterprise
+  -> Integrations -> API Key). Plan names, prices, registrant caps, and which
+  exact tier unlocks API access change over time - reconcile against
+  https://www.accelevents.com/pricing before relying on these numbers. The
+  per-registrant/percentage figures are from third-party summaries, not confirmed
+  on the current pricing page.
+sources:
+- https://www.accelevents.com/pricing
+- https://developer.accelevents.com/docs/getting-started
+- https://support.accelevents.com/en/articles/6174408-what-are-registrant-credits
+plans:
+- id: accelevents-professional
+  name: Professional
+  type: paid
+  description: >-
+    Entry subscription tier scoped to a single event. Published starting price
+    $7,500. API and webhook access is not listed at this tier on the current
+    pricing page.
+  entries:
+  - label: Subscription
+    name: professional_subscription
+    type: flat
+    metric: subscription
+    limit: -1
+    timeFrame: year
+    geo: global
+    unit: 1
+    price: from $7,500 (single event)
+    userMultiplied: false
+  elements:
+  - name: Single Event
+  - name: Registration and Ticketing
+- id: accelevents-business
+  name: Business
+  type: paid
+  description: >-
+    Subscription tier for unlimited events. Published starting price $13,500.
+    Per the pricing page feature comparison, this is the first tier that includes
+    API and webhook access.
+  entries:
+  - label: Subscription
+    name: business_subscription
+    type: flat
+    metric: subscription
+    limit: -1
+    timeFrame: year
+    geo: global
+    unit: 1
+    price: from $13,500 (unlimited events)
+    userMultiplied: false
+  elements:
+  - name: Unlimited Events
+  - name: API and Webhooks
+- id: accelevents-enterprise
+  name: Enterprise
+  type: enterprise
+  description: >-
+    Custom-quoted tier for larger organizations. Includes API and webhook access,
+    approval workflows, higher registrant capacity, and unlimited organizer
+    profiles. Contact sales for pricing.
+  entries:
+  - label: Enterprise Agreement
+    name: enterprise_agreement
+    type: flat
+    metric: contract
+    limit: -1
+    timeFrame: year
+    geo: global
+    unit: 1
+    price: contact sales
+    userMultiplied: false
+  elements:
+  - name: API and Webhooks
+  - name: Approval Workflows
+  - name: Higher Registrant Capacity
+  - name: Unlimited Organizer Profiles
+- id: accelevents-white-label
+  name: White Label
+  type: enterprise
+  description: >-
+    Custom-quoted tier adding full white-label branding on top of the platform
+    feature set. Contact sales for pricing.
+  entries:
+  - label: White Label Agreement
+    name: white_label_agreement
+    type: flat
+    metric: contract
+    limit: -1
+    timeFrame: year
+    geo: global
+    unit: 1
+    price: contact sales
+    userMultiplied: false
+  elements:
+  - name: White Label Branding
+  - name: API and Webhooks
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

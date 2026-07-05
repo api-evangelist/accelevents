@@ -1,0 +1,141 @@
+aid: accelevents
+url: https://raw.githubusercontent.com/api-evangelist/accelevents/refs/heads/main/apis.yml
+name: Accelevents
+kind: company
+description: Accelevents is an all-in-one event management and ticketing platform for
+  in-person, virtual, and hybrid events - covering registration, ticketing, agenda
+  and sessions, speakers, exhibitors, networking, and engagement. The Accelevents
+  Open API is a REST API (base https://api.accelevents.com/rest) authenticated with
+  an organization API key generated from the account Integrations tab. It exposes
+  event details, attendees, ticketing orders and sales, ticket holders, sessions,
+  speakers, and attendee networking. API and webhook access is a paid-plan feature
+  (Business tier and above), so many endpoints are documented publicly but require
+  a provisioned key to exercise.
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+tags:
+- Event Management
+- Ticketing
+- Events
+- Registration
+- Virtual Events
+- Sessions
+created: '2026-07-05'
+modified: '2026-07-05'
+specificationVersion: '0.19'
+apis:
+- aid: accelevents:accelevents-events-api
+  name: Accelevents Events API
+  tags:
+  - Events
+  - Event Details
+  - Recurring Events
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://developer.accelevents.com/reference/event-and-design-details
+  baseURL: https://api.accelevents.com/rest
+  properties:
+  - url: https://developer.accelevents.com/docs/accelevents-api-documentation
+    type: Documentation
+  - url: https://developer.accelevents.com/reference/event-and-design-details
+    type: APIReference
+  - url: openapi/accelevents-openapi.yml
+    type: OpenAPI
+  description: Retrieve event and design details for an event by its unique event URL,
+    and check recurring-event status. The event URL is the unique identifier used
+    across the rest of the API. Event details retrieval is confirmed in the public
+    reference; recurring-event and configuration paths are modeled from the documented
+    object catalog.
+- aid: accelevents:accelevents-attendees-api
+  name: Accelevents Attendees API
+  tags:
+  - Attendees
+  - People
+  - Registration
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://developer.accelevents.com/reference/get-all-attendees
+  baseURL: https://api.accelevents.com/rest
+  properties:
+  - url: https://developer.accelevents.com/docs/adding-attendees
+    type: Documentation
+  - url: https://developer.accelevents.com/reference/get-all-attendees
+    type: APIReference
+  - url: openapi/accelevents-openapi.yml
+    type: OpenAPI
+  description: List and search event attendees with pagination, filter people by company,
+    job title, and interests, and add attendees to an event. The all-attendees
+    listing endpoint is confirmed in the public reference; the people-filter and
+    add-attendee paths are modeled from the documented guides.
+- aid: accelevents:accelevents-orders-api
+  name: Accelevents Ticketing Orders API
+  tags:
+  - Orders
+  - Ticketing
+  - Sales
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://developer.accelevents.com/reference/get-ticketing-orders
+  baseURL: https://api.accelevents.com/rest
+  properties:
+  - url: https://developer.accelevents.com/docs/accelevents-api-documentation
+    type: Documentation
+  - url: https://developer.accelevents.com/reference/get-ticketing-orders
+    type: APIReference
+  - url: openapi/accelevents-openapi.yml
+    type: OpenAPI
+  description: Retrieve ticketing and add-on orders for an event with search, date,
+    and pagination filters, pull dashboard ticket and add-on sales data, and export
+    ticket buyer data. The ticketing-orders endpoint is confirmed in the public
+    reference; sales-data and CSV-export paths are modeled from the documented
+    object catalog.
+- aid: accelevents:accelevents-tickets-api
+  name: Accelevents Tickets API
+  tags:
+  - Tickets
+  - Ticket Holders
+  - Barcodes
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://developer.accelevents.com/reference/accelevents-api-documentation
+  baseURL: https://api.accelevents.com/rest
+  properties:
+  - url: https://developer.accelevents.com/docs/accelevents-api-documentation
+    type: Documentation
+  - url: openapi/accelevents-openapi.yml
+    type: OpenAPI
+  description: Manage individual ticket holders - update ticket-holder attributes by
+    barcode ID, exchange a ticket type for an attendee, and export ticket-holder
+    data. These operations are named in the public reference object catalog; their
+    exact request paths are modeled here and flagged as unconfirmed.
+- aid: accelevents:accelevents-sessions-api
+  name: Accelevents Sessions API
+  tags:
+  - Sessions
+  - Agenda
+  - Speakers
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://developer.accelevents.com/reference/accelevents-api-documentation
+  baseURL: https://api.accelevents.com/rest
+  properties:
+  - url: https://developer.accelevents.com/docs/accelevents-api-documentation
+    type: Documentation
+  - url: openapi/accelevents-openapi.yml
+    type: OpenAPI
+  description: List and update event sessions, manage an attendee's registered/bookmarked
+    sessions, create session tags and tracks, and create and list speakers. These
+    operations are named in the public reference object catalog (Session, Speaker);
+    their exact request paths are modeled here and flagged as unconfirmed.
+common:
+- type: LinkedIn
+  url: https://www.linkedin.com/company/accelevents
+- type: Website
+  url: https://www.accelevents.com
+- type: Documentation
+  url: https://developer.accelevents.com/docs/accelevents-api-documentation
+- type: APIReference
+  url: https://developer.accelevents.com/reference
+- type: Plans
+  url: plans/accelevents-plans-pricing.yml
+- type: RateLimits
+  url: rate-limits/accelevents-rate-limits.yml
+- type: FinOps
+  url: finops/accelevents-finops.yml
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

@@ -1,0 +1,64 @@
+specification: API Commons Rate Limits
+specificationVersion: '0.1'
+schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/RateLimits
+provider: Accelevents
+providerId: accelevents
+created: '2026-07-05'
+modified: '2026-07-05'
+reconciled: false
+tags:
+- Event Management
+- Ticketing
+- Events
+- Rate Limiting
+- Quotas
+description: >-
+  Accelevents does not publish numeric rate limits for the Open API in its public
+  developer documentation. Access is governed primarily by subscription tier
+  (API and webhook access is bundled from the Business plan and above) rather
+  than by a documented per-minute request cap. List endpoints are paginated with
+  page and size parameters (attendees default size 100, orders default size 10),
+  which is the main throughput control exposed to callers. Clients should
+  paginate, cache event and order data, and implement retry-with-backoff.
+notes: >-
+  No fixed per-account or per-endpoint request-rate limit is documented as of the
+  review date. Numeric limits, if any, would be enforced server-side; confirm
+  with Accelevents support or the Slack community. The 429 response code below is
+  the conventional throttling signal and is assumed, not confirmed.
+sources:
+- https://developer.accelevents.com/docs/accelevents-api-documentation
+- https://developer.accelevents.com/reference/get-all-attendees
+- https://developer.accelevents.com/reference/get-ticketing-orders
+responseCodes:
+  throttled: 429
+limits:
+- name: Open API Requests
+  scope: account
+  metric: requests
+  limit: not published
+  notes: No fixed numeric request-rate limit is documented for the Open API.
+- name: Attendee Listing Page Size
+  scope: request
+  metric: records
+  limit: configurable via size (default 100)
+  notes: The allAttendees endpoint returns up to size records per page.
+- name: Order Listing Page Size
+  scope: request
+  metric: records
+  limit: configurable via size (default 10)
+  notes: The orders endpoint returns up to size records per page.
+- name: API Access Eligibility
+  scope: account
+  metric: subscription
+  limit: Business tier and above
+  notes: API and webhook access is bundled into paid tiers rather than metered per call.
+policies:
+- name: Pagination
+  description: List endpoints use zero-indexed page and size query parameters; iterate pages to retrieve full result sets.
+- name: Incremental Sync
+  description: The orders endpoint accepts searchTimeStamp to fetch records created or updated after a given time, enabling incremental polling instead of full re-pulls.
+- name: Backoff Strategy
+  description: Clients should implement exponential backoff with jitter and honor Retry-After on any 429 responses.
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

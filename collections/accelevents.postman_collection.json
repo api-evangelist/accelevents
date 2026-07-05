@@ -1,0 +1,159 @@
+{
+  "info": {
+    "name": "Accelevents Open API",
+    "description": "REST API for the Accelevents event management and ticketing platform. Base URL: https://api.accelevents.com/rest. Requests are authenticated with an organization API key generated from the account Integrations tab and passed in an AUTHENTICATION header (header name modeled from the getting-started guide). API and webhook access is a paid-plan feature (Business tier and above). Endpoints for event details, all attendees, and ticketing orders are confirmed against the public reference; the rest are modeled from the documented object catalog.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      { "key": "key", "value": "AUTHENTICATION", "type": "string" },
+      { "key": "value", "value": "{{apiKey}}", "type": "string" },
+      { "key": "in", "value": "header", "type": "string" }
+    ]
+  },
+  "variable": [
+    { "key": "baseUrl", "value": "https://api.accelevents.com/rest", "type": "string" },
+    { "key": "eventUrl", "value": "demo", "type": "string" },
+    { "key": "apiKey", "value": "", "type": "string" }
+  ],
+  "item": [
+    {
+      "name": "Events",
+      "item": [
+        {
+          "name": "Get event and design details",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": { "raw": "{{baseUrl}}/host/event/{{eventUrl}}/eventDetails", "host": ["{{baseUrl}}"], "path": ["host", "event", "{{eventUrl}}", "eventDetails"] },
+            "description": "Retrieves event and design details by unique event URL. Confirmed endpoint."
+          }
+        },
+        {
+          "name": "Check recurring event status",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": { "raw": "{{baseUrl}}/host/event/{{eventUrl}}/recurringStatus", "host": ["{{baseUrl}}"], "path": ["host", "event", "{{eventUrl}}", "recurringStatus"] },
+            "description": "Returns whether an event recurs. MODELED path - not confirmed in the public reference."
+          }
+        }
+      ]
+    },
+    {
+      "name": "Attendees",
+      "item": [
+        {
+          "name": "Get all attendees",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": { "raw": "{{baseUrl}}/events/{{eventUrl}}/staff/allAttendees?page=0&size=100", "host": ["{{baseUrl}}"], "path": ["events", "{{eventUrl}}", "staff", "allAttendees"], "query": [{ "key": "page", "value": "0" }, { "key": "size", "value": "100" }] },
+            "description": "Lists attendees with pagination and search. Confirmed endpoint."
+          }
+        },
+        {
+          "name": "Get filtered people list",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": { "raw": "{{baseUrl}}/events/{{eventUrl}}/staff/people", "host": ["{{baseUrl}}"], "path": ["events", "{{eventUrl}}", "staff", "people"] },
+            "description": "Fetches attendees filtered by company, job title, interests. MODELED path - not confirmed."
+          }
+        }
+      ]
+    },
+    {
+      "name": "Orders",
+      "item": [
+        {
+          "name": "Get ticketing orders",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": { "raw": "{{baseUrl}}/events/{{eventUrl}}/staff/orders?page=0&size=10", "host": ["{{baseUrl}}"], "path": ["events", "{{eventUrl}}", "staff", "orders"], "query": [{ "key": "page", "value": "0" }, { "key": "size", "value": "10" }] },
+            "description": "Retrieves ticketing and add-on orders with search, date, pagination filters. Confirmed endpoint."
+          }
+        },
+        {
+          "name": "Get ticketing sales data",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": { "raw": "{{baseUrl}}/events/{{eventUrl}}/staff/salesData", "host": ["{{baseUrl}}"], "path": ["events", "{{eventUrl}}", "staff", "salesData"] },
+            "description": "Dashboard ticket and add-on sales figures. MODELED path - not confirmed."
+          }
+        }
+      ]
+    },
+    {
+      "name": "Tickets",
+      "item": [
+        {
+          "name": "Update ticket holder attributes by barcode ID",
+          "request": {
+            "method": "PATCH",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": { "mode": "raw", "raw": "{}" },
+            "url": { "raw": "{{baseUrl}}/events/{{eventUrl}}/staff/ticketHolders/:barcodeId", "host": ["{{baseUrl}}"], "path": ["events", "{{eventUrl}}", "staff", "ticketHolders", ":barcodeId"], "variable": [{ "key": "barcodeId", "value": "" }] },
+            "description": "Updates ticket-holder attributes by barcode ID. MODELED path - not confirmed."
+          }
+        },
+        {
+          "name": "Exchange ticket type",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": { "mode": "raw", "raw": "{\n  \"barcodeId\": \"\",\n  \"newTicketTypeId\": 0\n}" },
+            "url": { "raw": "{{baseUrl}}/events/{{eventUrl}}/staff/exchangeTicketType", "host": ["{{baseUrl}}"], "path": ["events", "{{eventUrl}}", "staff", "exchangeTicketType"] },
+            "description": "Swaps ticket type for an attendee. MODELED path - not confirmed."
+          }
+        }
+      ]
+    },
+    {
+      "name": "Sessions",
+      "item": [
+        {
+          "name": "Get sessions list",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": { "raw": "{{baseUrl}}/events/{{eventUrl}}/staff/sessions", "host": ["{{baseUrl}}"], "path": ["events", "{{eventUrl}}", "staff", "sessions"] },
+            "description": "Lists an event's sessions (admin view). MODELED path - not confirmed."
+          }
+        },
+        {
+          "name": "Update session",
+          "request": {
+            "method": "PATCH",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": { "mode": "raw", "raw": "{}" },
+            "url": { "raw": "{{baseUrl}}/events/{{eventUrl}}/staff/sessions/:sessionId", "host": ["{{baseUrl}}"], "path": ["events", "{{eventUrl}}", "staff", "sessions", ":sessionId"], "variable": [{ "key": "sessionId", "value": "" }] },
+            "description": "Updates a session's details and visibility. MODELED path - not confirmed."
+          }
+        },
+        {
+          "name": "Get speakers list",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": { "raw": "{{baseUrl}}/events/{{eventUrl}}/staff/speakers", "host": ["{{baseUrl}}"], "path": ["events", "{{eventUrl}}", "staff", "speakers"] },
+            "description": "Lists speakers with pagination. MODELED path - not confirmed."
+          }
+        },
+        {
+          "name": "Create speaker",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": { "mode": "raw", "raw": "{}" },
+            "url": { "raw": "{{baseUrl}}/events/{{eventUrl}}/staff/speakers", "host": ["{{baseUrl}}"], "path": ["events", "{{eventUrl}}", "staff", "speakers"] },
+            "description": "Adds a speaker to an event. MODELED path - not confirmed."
+          }
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,91 @@
+specification: FinOps Framework
+specificationVersion: '1.0'
+schema: https://www.finops.org/framework/
+provider: Accelevents
+providerId: accelevents
+created: '2026-07-05'
+modified: '2026-07-05'
+reconciled: false
+tags:
+- Event Management
+- Ticketing
+- Events
+- FinOps
+- Cost Management
+- FOCUS
+description: >-
+  FinOps view of Accelevents spend. Accelevents is billed as a SaaS event
+  management and ticketing subscription (Professional, Business, Enterprise,
+  White Label), not as a metered API product. The Open API and webhooks are a
+  feature bundled into the paid tiers (Business and above), so API usage itself
+  carries no separate per-call charge - the cost driver is the platform
+  subscription plus any registrant-based, add-on, or transaction fees tied to
+  running events. Enterprise and White Label are custom-quoted.
+notes: >-
+  Per-unit registrant/transaction rates are not reconciled here and are drawn
+  from third-party summaries; verify on the Accelevents pricing page. Because API
+  access is subscription-bundled, allocate its cost to the platform subscription
+  and to the events/teams consuming it rather than to API call volume.
+sources:
+- https://www.accelevents.com/pricing
+- https://developer.accelevents.com/docs/accelevents-api-documentation
+- https://focus.finops.org/focus-specification/v1-3/
+alignedWith:
+  framework: FinOps Foundation Framework
+  frameworkUrl: https://www.finops.org/framework/
+  dataSpec: FOCUS
+  dataSpecVersion: '1.3'
+  dataSpecUrl: https://focus.finops.org/focus-specification/v1-3/
+publisherName: Accelevents
+serviceCategory: Event Management and Ticketing
+billingModel:
+  pricingCategory: Subscription
+  billingFrequency: Annual
+  billingCurrency: USD
+  chargeCategories:
+  - Purchase
+  - Usage
+  - Adjustment
+focusColumns:
+  ServiceName: Accelevents
+  ServiceCategory: Event Management and Ticketing
+  ProviderName: Accelevents
+  PublisherName: Accelevents
+  InvoiceIssuerName: Accelevents
+  BillingCurrency: USD
+  ChargeCategory: Purchase
+  PricingCategory: Subscription
+meters:
+- name: platform_subscription
+  description: Annual platform subscription fee by tier (Professional, Business, Enterprise, White Label).
+  unit: subscription
+  aggregation: sum
+  dimensions:
+  - account
+  - plan
+- name: registrants
+  description: Registrants/tickets processed per event; may drive registrant-based or transaction fees depending on plan.
+  unit: registrants
+  aggregation: sum
+  dimensions:
+  - account
+  - event
+- name: transaction_value
+  description: Ticketing transaction value on which percentage fees may apply under transactional pricing.
+  unit: currency
+  aggregation: sum
+  dimensions:
+  - account
+  - event
+principles:
+- name: Visibility
+  description: Track the platform subscription tier and per-event registrant volumes; API access rides on the subscription with no separate call charge.
+- name: Allocation
+  description: Map the subscription and per-event fees to the teams and events consuming the platform and its API.
+- name: Optimization
+  description: Right-size the subscription tier to needed features (API access starts at Business); consolidate events under an unlimited-events tier when volume justifies it.
+- name: Accountability
+  description: Assign an owner for the Accelevents account and review annual subscription plus per-event registrant costs against budget.
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com
