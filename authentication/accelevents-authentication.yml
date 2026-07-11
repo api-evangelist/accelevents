@@ -1,0 +1,19 @@
+generated: '2026-07-11'
+method: derived
+source: openapi/accelevents-openapi.yml
+summary:
+  types:
+  - apiKey
+  api_key_in:
+  - header
+schemes:
+- name: apiKeyAuth
+  type: apiKey
+  in: header
+  parameter: AUTHENTICATION
+  description: Organization API key generated from the account Integrations tab (Edit Enterprise
+    -> Integrations -> API Key), passed in a request header. The header name is modeled as "AUTHENTICATION"
+    per the getting-started guide; confirm the exact name and format on the API reference before
+    use.
+  sources:
+  - openapi/accelevents-openapi.yml

@@ -122,6 +122,12 @@ apis:
     operations are named in the public reference object catalog (Session, Speaker);
     their exact request paths are modeled here and flagged as unconfirmed.
 common:
+- type: TrustCenter
+  url: security/accelevents-trust-center.yml
+- type: DomainSecurity
+  url: security/accelevents-domain-security.yml
+- type: Authentication
+  url: authentication/accelevents-authentication.yml
 - type: LinkedIn
   url: https://www.linkedin.com/company/accelevents
 - type: Website
