@@ -122,6 +122,8 @@ apis:
     operations are named in the public reference object catalog (Session, Speaker);
     their exact request paths are modeled here and flagged as unconfirmed.
 common:
+- type: AgenticAccess
+  url: agentic-access/accelevents-agentic-access.yml
 - type: TrustCenter
   url: security/accelevents-trust-center.yml
 - type: DomainSecurity
