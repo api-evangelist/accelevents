@@ -1,0 +1,167 @@
+openapi: 3.0.3
+info:
+  title: Accelevents Open Attendees Orders API
+  description: 'The Accelevents Open API is a REST API for the Accelevents event management and ticketing platform, covering in-person, virtual, and hybrid events. It exposes event details, attendees, ticketing orders and sales, ticket holders, sessions, speakers, and attendee networking. Requests are authenticated with an organization API key generated from the account Integrations tab (Edit Enterprise -> Integrations -> API Key) and passed in a request header. API and webhook access is a paid-plan feature (Business tier and above).
+
+
+    Confirmed endpoints in this document (paths verified against the public API reference at https://developer.accelevents.com/reference): the event details endpoint, the all-attendees listing endpoint, and the ticketing orders endpoint. All other operations are named in the Accelevents public reference object catalog (Event, Attendees, Ticket Purchase, Ticket Holder, Session, Speaker, Portal People) but their exact request paths are MODELED here and marked with `x-endpoint-modeled: true`. The exact authentication header name is also modeled; the getting-started guide refers to pasting the key into an "AUTHENTICATION" header on the reference pages.'
+  version: '1.0'
+  contact:
+    name: Accelevents
+    url: https://developer.accelevents.com
+servers:
+- url: https://api.accelevents.com/rest
+  description: Accelevents Open API
+security:
+- apiKeyAuth: []
+tags:
+- name: Orders
+  description: Ticketing orders and sales.
+paths:
+  /events/{eventUrl}/staff/orders:
+    parameters:
+    - $ref: '#/components/parameters/EventUrl'
+    get:
+      operationId: getTicketingOrders
+      tags:
+      - Orders
+      summary: Get ticketing orders
+      description: Retrieves ticketing and add-on orders for an event with search, date, and pagination filters. Confirmed in the public API reference.
+      parameters:
+      - name: searchString
+        in: query
+        description: Filter orders by search value.
+        schema:
+          type: string
+      - name: dataType
+        in: query
+        schema:
+          type: string
+          enum:
+          - TICKET
+          - ADDON
+      - name: searchDate
+        in: query
+        schema:
+          type: string
+          format: date
+      - name: page
+        in: query
+        schema:
+          type: integer
+          format: int32
+          default: 0
+      - name: size
+        in: query
+        schema:
+          type: integer
+          format: int32
+          default: 10
+      - name: recurringEventId
+        in: query
+        schema:
+          type: integer
+          format: int64
+          default: 0
+      - name: searchTimeStamp
+        in: query
+        description: Records created or updated after this time (MM/dd/yyyy HH:mm:ss).
+        schema:
+          type: string
+      responses:
+        '200':
+          description: A page of orders.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Order'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /events/{eventUrl}/staff/salesData:
+    parameters:
+    - $ref: '#/components/parameters/EventUrl'
+    get:
+      operationId: getTicketingSalesData
+      tags:
+      - Orders
+      summary: Get ticketing sales data
+      description: Returns dashboard ticket and add-on sales figures for an event. MODELED path - operation is named in the public reference but the exact route is not confirmed.
+      x-endpoint-modeled: true
+      responses:
+        '200':
+          description: Sales summary.
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+components:
+  parameters:
+    EventUrl:
+      name: eventUrl
+      in: path
+      required: true
+      description: The unique event URL identifier (for example "demo" from https://www.accelevents.com/events/demo).
+      schema:
+        type: string
+  schemas:
+    Order:
+      type: object
+      properties:
+        orderId:
+          type: string
+        buyerFirstName:
+          type: string
+        buyerLastName:
+          type: string
+        buyerEmail:
+          type: string
+          format: email
+        dataType:
+          type: string
+          enum:
+          - TICKET
+          - ADDON
+        total:
+          type: number
+        currency:
+          type: string
+        createdAt:
+          type: string
+          format: date-time
+      additionalProperties: true
+    Error:
+      type: object
+      properties:
+        code:
+          type: string
+        message:
+          type: string
+  responses:
+    NotFound:
+      description: The requested resource was not found.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Unauthorized:
+      description: Missing or invalid API key.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  securitySchemes:
+    apiKeyAuth:
+      type: apiKey
+      in: header
+      name: AUTHENTICATION
+      description: Organization API key generated from the account Integrations tab (Edit Enterprise -> Integrations -> API Key), passed in a request header. The header name is modeled as "AUTHENTICATION" per the getting-started guide; confirm the exact name and format on the API reference before use.

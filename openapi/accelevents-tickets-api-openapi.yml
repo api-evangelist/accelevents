@@ -1,0 +1,136 @@
+openapi: 3.0.3
+info:
+  title: Accelevents Open Attendees Tickets API
+  description: 'The Accelevents Open API is a REST API for the Accelevents event management and ticketing platform, covering in-person, virtual, and hybrid events. It exposes event details, attendees, ticketing orders and sales, ticket holders, sessions, speakers, and attendee networking. Requests are authenticated with an organization API key generated from the account Integrations tab (Edit Enterprise -> Integrations -> API Key) and passed in a request header. API and webhook access is a paid-plan feature (Business tier and above).
+
+
+    Confirmed endpoints in this document (paths verified against the public API reference at https://developer.accelevents.com/reference): the event details endpoint, the all-attendees listing endpoint, and the ticketing orders endpoint. All other operations are named in the Accelevents public reference object catalog (Event, Attendees, Ticket Purchase, Ticket Holder, Session, Speaker, Portal People) but their exact request paths are MODELED here and marked with `x-endpoint-modeled: true`. The exact authentication header name is also modeled; the getting-started guide refers to pasting the key into an "AUTHENTICATION" header on the reference pages.'
+  version: '1.0'
+  contact:
+    name: Accelevents
+    url: https://developer.accelevents.com
+servers:
+- url: https://api.accelevents.com/rest
+  description: Accelevents Open API
+security:
+- apiKeyAuth: []
+tags:
+- name: Tickets
+  description: Ticket holders and ticket types.
+paths:
+  /events/{eventUrl}/staff/ticketHolders/{barcodeId}:
+    parameters:
+    - $ref: '#/components/parameters/EventUrl'
+    - name: barcodeId
+      in: path
+      required: true
+      description: The barcode ID of the ticket holder.
+      schema:
+        type: string
+    patch:
+      operationId: updateTicketHolderByBarcode
+      tags:
+      - Tickets
+      summary: Update ticket holder attributes by barcode ID
+      description: Updates attributes for a ticket holder identified by barcode ID. MODELED path - operation is named in the public reference but the exact route is not confirmed.
+      x-endpoint-modeled: true
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: true
+      responses:
+        '200':
+          description: The updated ticket holder.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TicketHolder'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /events/{eventUrl}/staff/exchangeTicketType:
+    parameters:
+    - $ref: '#/components/parameters/EventUrl'
+    post:
+      operationId: exchangeTicketType
+      tags:
+      - Tickets
+      summary: Exchange ticket type
+      description: Swaps the ticket type for an attendee. MODELED path - operation is named in the public reference but the exact route is not confirmed.
+      x-endpoint-modeled: true
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                barcodeId:
+                  type: string
+                newTicketTypeId:
+                  type: integer
+                  format: int64
+      responses:
+        '200':
+          description: Exchange result.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TicketHolder'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+components:
+  parameters:
+    EventUrl:
+      name: eventUrl
+      in: path
+      required: true
+      description: The unique event URL identifier (for example "demo" from https://www.accelevents.com/events/demo).
+      schema:
+        type: string
+  responses:
+    NotFound:
+      description: The requested resource was not found.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Unauthorized:
+      description: Missing or invalid API key.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  schemas:
+    Error:
+      type: object
+      properties:
+        code:
+          type: string
+        message:
+          type: string
+    TicketHolder:
+      type: object
+      properties:
+        barcodeId:
+          type: string
+        firstName:
+          type: string
+        lastName:
+          type: string
+        email:
+          type: string
+          format: email
+        ticketType:
+          type: string
+      additionalProperties: true
+  securitySchemes:
+    apiKeyAuth:
+      type: apiKey
+      in: header
+      name: AUTHENTICATION
+      description: Organization API key generated from the account Integrations tab (Edit Enterprise -> Integrations -> API Key), passed in a request header. The header name is modeled as "AUTHENTICATION" per the getting-started guide; confirm the exact name and format on the API reference before use.

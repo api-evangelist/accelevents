@@ -1,0 +1,122 @@
+openapi: 3.0.3
+info:
+  title: Accelevents Open Attendees Events API
+  description: 'The Accelevents Open API is a REST API for the Accelevents event management and ticketing platform, covering in-person, virtual, and hybrid events. It exposes event details, attendees, ticketing orders and sales, ticket holders, sessions, speakers, and attendee networking. Requests are authenticated with an organization API key generated from the account Integrations tab (Edit Enterprise -> Integrations -> API Key) and passed in a request header. API and webhook access is a paid-plan feature (Business tier and above).
+
+
+    Confirmed endpoints in this document (paths verified against the public API reference at https://developer.accelevents.com/reference): the event details endpoint, the all-attendees listing endpoint, and the ticketing orders endpoint. All other operations are named in the Accelevents public reference object catalog (Event, Attendees, Ticket Purchase, Ticket Holder, Session, Speaker, Portal People) but their exact request paths are MODELED here and marked with `x-endpoint-modeled: true`. The exact authentication header name is also modeled; the getting-started guide refers to pasting the key into an "AUTHENTICATION" header on the reference pages.'
+  version: '1.0'
+  contact:
+    name: Accelevents
+    url: https://developer.accelevents.com
+servers:
+- url: https://api.accelevents.com/rest
+  description: Accelevents Open API
+security:
+- apiKeyAuth: []
+tags:
+- name: Events
+  description: Event details and configuration.
+paths:
+  /host/event/{eventUrl}/eventDetails:
+    parameters:
+    - $ref: '#/components/parameters/EventUrl'
+    get:
+      operationId: getEventDetails
+      tags:
+      - Events
+      summary: Get event and design details
+      description: Retrieves event and design details for an event identified by its unique event URL. Confirmed in the public API reference.
+      responses:
+        '200':
+          description: Event and design details.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Event'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /host/event/{eventUrl}/recurringStatus:
+    parameters:
+    - $ref: '#/components/parameters/EventUrl'
+    get:
+      operationId: getRecurringEventStatus
+      tags:
+      - Events
+      summary: Check recurring event status
+      description: Returns whether an event recurs and its recurring configuration. MODELED path - operation is named in the public reference but the exact route is not confirmed.
+      x-endpoint-modeled: true
+      responses:
+        '200':
+          description: Recurring status.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  recurring:
+                    type: boolean
+                  recurringEventId:
+                    type: integer
+                    format: int64
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+components:
+  parameters:
+    EventUrl:
+      name: eventUrl
+      in: path
+      required: true
+      description: The unique event URL identifier (for example "demo" from https://www.accelevents.com/events/demo).
+      schema:
+        type: string
+  responses:
+    NotFound:
+      description: The requested resource was not found.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Unauthorized:
+      description: Missing or invalid API key.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  schemas:
+    Event:
+      type: object
+      properties:
+        eventUrl:
+          type: string
+        name:
+          type: string
+        startDate:
+          type: string
+          format: date-time
+        endDate:
+          type: string
+          format: date-time
+        timezone:
+          type: string
+        eventType:
+          type: string
+          description: In-person, virtual, or hybrid.
+      additionalProperties: true
+    Error:
+      type: object
+      properties:
+        code:
+          type: string
+        message:
+          type: string
+  securitySchemes:
+    apiKeyAuth:
+      type: apiKey
+      in: header
+      name: AUTHENTICATION
+      description: Organization API key generated from the account Integrations tab (Edit Enterprise -> Integrations -> API Key), passed in a request header. The header name is modeled as "AUTHENTICATION" per the getting-started guide; confirm the exact name and format on the API reference before use.
