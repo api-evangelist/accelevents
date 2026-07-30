@@ -11,7 +11,20 @@ description: Accelevents is an all-in-one event management and ticketing platfor
   speakers, and attendee networking. API and webhook access is a paid-plan feature
   (Business tier and above), so many endpoints are documented publicly but require
   a provisioned key to exercise.
-image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+accessModel:
+  pricing: paid
+  onboarding: self-serve
+  trial: false
+  try_now: false
+  public: false
+  label: Paid · Self-serve signup
+  confidence: high
+  source:
+  - plans
+  - authentication
+  generated: '2026-07-22'
+  method: derived
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/accelevents.png
 tags:
 - Event Management
 - Ticketing
@@ -23,104 +36,106 @@ created: '2026-07-05'
 modified: '2026-07-05'
 specificationVersion: '0.19'
 apis:
-- aid: accelevents:accelevents-events-api
-  name: Accelevents Events API
-  tags:
-  - Events
-  - Event Details
-  - Recurring Events
-  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-  humanURL: https://developer.accelevents.com/reference/event-and-design-details
-  baseURL: https://api.accelevents.com/rest
-  properties:
-  - url: https://developer.accelevents.com/docs/accelevents-api-documentation
-    type: Documentation
-  - url: https://developer.accelevents.com/reference/event-and-design-details
-    type: APIReference
-  - url: openapi/accelevents-openapi.yml
-    type: OpenAPI
-  description: Retrieve event and design details for an event by its unique event URL,
-    and check recurring-event status. The event URL is the unique identifier used
-    across the rest of the API. Event details retrieval is confirmed in the public
-    reference; recurring-event and configuration paths are modeled from the documented
-    object catalog.
 - aid: accelevents:accelevents-attendees-api
   name: Accelevents Attendees API
+  description: Event attendees and people.
+  humanURL: https://developer.accelevents.com/reference/event-and-design-details
+  baseURL: https://api.accelevents.com/rest
   tags:
   - Attendees
-  - People
-  - Registration
-  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-  humanURL: https://developer.accelevents.com/reference/get-all-attendees
-  baseURL: https://api.accelevents.com/rest
   properties:
-  - url: https://developer.accelevents.com/docs/adding-attendees
-    type: Documentation
-  - url: https://developer.accelevents.com/reference/get-all-attendees
-    type: APIReference
-  - url: openapi/accelevents-openapi.yml
-    type: OpenAPI
-  description: List and search event attendees with pagination, filter people by company,
-    job title, and interests, and add attendees to an event. The all-attendees
-    listing endpoint is confirmed in the public reference; the people-filter and
-    add-attendee paths are modeled from the documented guides.
+  - type: OpenAPI
+    url: openapi/accelevents-attendees-api-openapi.yml
+  - type: Documentation
+    url: https://developer.accelevents.com/docs/accelevents-api-documentation
+  - type: APIReference
+    url: https://developer.accelevents.com/reference/event-and-design-details
+  - type: Documentation
+    url: https://developer.accelevents.com/docs/adding-attendees
+  - type: APIReference
+    url: https://developer.accelevents.com/reference/get-all-attendees
+  - type: APIReference
+    url: https://developer.accelevents.com/reference/get-ticketing-orders
+- aid: accelevents:accelevents-events-api
+  name: Accelevents Events API
+  description: Event details and configuration.
+  humanURL: https://developer.accelevents.com/reference/event-and-design-details
+  baseURL: https://api.accelevents.com/rest
+  tags:
+  - Events
+  properties:
+  - type: OpenAPI
+    url: openapi/accelevents-events-api-openapi.yml
+  - type: Documentation
+    url: https://developer.accelevents.com/docs/accelevents-api-documentation
+  - type: APIReference
+    url: https://developer.accelevents.com/reference/event-and-design-details
+  - type: Documentation
+    url: https://developer.accelevents.com/docs/adding-attendees
+  - type: APIReference
+    url: https://developer.accelevents.com/reference/get-all-attendees
+  - type: APIReference
+    url: https://developer.accelevents.com/reference/get-ticketing-orders
 - aid: accelevents:accelevents-orders-api
-  name: Accelevents Ticketing Orders API
+  name: Accelevents Orders API
+  description: Ticketing orders and sales.
+  humanURL: https://developer.accelevents.com/reference/event-and-design-details
+  baseURL: https://api.accelevents.com/rest
   tags:
   - Orders
-  - Ticketing
-  - Sales
-  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-  humanURL: https://developer.accelevents.com/reference/get-ticketing-orders
-  baseURL: https://api.accelevents.com/rest
   properties:
-  - url: https://developer.accelevents.com/docs/accelevents-api-documentation
-    type: Documentation
-  - url: https://developer.accelevents.com/reference/get-ticketing-orders
-    type: APIReference
-  - url: openapi/accelevents-openapi.yml
-    type: OpenAPI
-  description: Retrieve ticketing and add-on orders for an event with search, date,
-    and pagination filters, pull dashboard ticket and add-on sales data, and export
-    ticket buyer data. The ticketing-orders endpoint is confirmed in the public
-    reference; sales-data and CSV-export paths are modeled from the documented
-    object catalog.
-- aid: accelevents:accelevents-tickets-api
-  name: Accelevents Tickets API
-  tags:
-  - Tickets
-  - Ticket Holders
-  - Barcodes
-  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-  humanURL: https://developer.accelevents.com/reference/accelevents-api-documentation
-  baseURL: https://api.accelevents.com/rest
-  properties:
-  - url: https://developer.accelevents.com/docs/accelevents-api-documentation
-    type: Documentation
-  - url: openapi/accelevents-openapi.yml
-    type: OpenAPI
-  description: Manage individual ticket holders - update ticket-holder attributes by
-    barcode ID, exchange a ticket type for an attendee, and export ticket-holder
-    data. These operations are named in the public reference object catalog; their
-    exact request paths are modeled here and flagged as unconfirmed.
+  - type: OpenAPI
+    url: openapi/accelevents-orders-api-openapi.yml
+  - type: Documentation
+    url: https://developer.accelevents.com/docs/accelevents-api-documentation
+  - type: APIReference
+    url: https://developer.accelevents.com/reference/event-and-design-details
+  - type: Documentation
+    url: https://developer.accelevents.com/docs/adding-attendees
+  - type: APIReference
+    url: https://developer.accelevents.com/reference/get-all-attendees
+  - type: APIReference
+    url: https://developer.accelevents.com/reference/get-ticketing-orders
 - aid: accelevents:accelevents-sessions-api
   name: Accelevents Sessions API
+  description: Agenda sessions, tracks, and speakers.
+  humanURL: https://developer.accelevents.com/reference/event-and-design-details
+  baseURL: https://api.accelevents.com/rest
   tags:
   - Sessions
-  - Agenda
-  - Speakers
-  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-  humanURL: https://developer.accelevents.com/reference/accelevents-api-documentation
-  baseURL: https://api.accelevents.com/rest
   properties:
-  - url: https://developer.accelevents.com/docs/accelevents-api-documentation
-    type: Documentation
-  - url: openapi/accelevents-openapi.yml
-    type: OpenAPI
-  description: List and update event sessions, manage an attendee's registered/bookmarked
-    sessions, create session tags and tracks, and create and list speakers. These
-    operations are named in the public reference object catalog (Session, Speaker);
-    their exact request paths are modeled here and flagged as unconfirmed.
+  - type: OpenAPI
+    url: openapi/accelevents-sessions-api-openapi.yml
+  - type: Documentation
+    url: https://developer.accelevents.com/docs/accelevents-api-documentation
+  - type: APIReference
+    url: https://developer.accelevents.com/reference/event-and-design-details
+  - type: Documentation
+    url: https://developer.accelevents.com/docs/adding-attendees
+  - type: APIReference
+    url: https://developer.accelevents.com/reference/get-all-attendees
+  - type: APIReference
+    url: https://developer.accelevents.com/reference/get-ticketing-orders
+- aid: accelevents:accelevents-tickets-api
+  name: Accelevents Tickets API
+  description: Ticket holders and ticket types.
+  humanURL: https://developer.accelevents.com/reference/event-and-design-details
+  baseURL: https://api.accelevents.com/rest
+  tags:
+  - Tickets
+  properties:
+  - type: OpenAPI
+    url: openapi/accelevents-tickets-api-openapi.yml
+  - type: Documentation
+    url: https://developer.accelevents.com/docs/accelevents-api-documentation
+  - type: APIReference
+    url: https://developer.accelevents.com/reference/event-and-design-details
+  - type: Documentation
+    url: https://developer.accelevents.com/docs/adding-attendees
+  - type: APIReference
+    url: https://developer.accelevents.com/reference/get-all-attendees
+  - type: APIReference
+    url: https://developer.accelevents.com/reference/get-ticketing-orders
 common:
 - type: AgenticAccess
   url: agentic-access/accelevents-agentic-access.yml
