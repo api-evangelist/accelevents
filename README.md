@@ -1,5 +1,47 @@
 # Accelevents (accelevents)
 
+<!-- API-EVANGELIST-PROVENANCE:BEGIN -->
+> ### About this repository
+>
+> **This is not our API.** This repository is an independent, third-party profile of a company's
+> **publicly available** API surface, maintained by [API Evangelist](https://apievangelist.com).
+> API Evangelist does not operate, host, resell, or support this company's APIs, and is not
+> affiliated with or endorsed by the company unless stated on the profile.
+>
+> **Where the information came from.** Everything here is assembled from material a member of the
+> public can reach with a browser and no credentials — the company's own website, developer portal
+> and documentation, the specifications it publishes for public use (OpenAPI, AsyncAPI, JSON Schema,
+> `apis.json`, `llms.txt` and similar), its public repositories, and its public status, pricing and
+> changelog pages. **Nothing here is obtained by breaching a system, defeating an access control, or
+> using credentials of any kind.**
+>
+> **The rating is an independent assessment.** The Kin Score and Agent Readiness rating are
+> independently calculated scores of a company's *public* API artifacts, produced by API Evangelist
+> against a published rubric. They are not certifications, endorsements, security assessments, or
+> audits, and they score published artifacts — not the quality, safety, or security of the software.
+>
+> **Corrections, re-scores, and removal are free.** No partnership, contract, or purchase is
+> required, and you do not need to justify the request.
+>
+> - **Something wrong?** Open an issue on this repository, or email
+>   [info@apievangelist.com](mailto:info@apievangelist.com).
+> - **Published something new?** Ask for a re-score and we will re-run the rating.
+> - **Want the listing taken down?** Say so and we will honor it. The profile is reduced to your
+>   company name, a factual description, and a link to your own site, and the company is recorded as
+>   **unrated** — never scored zero for having asked.
+>
+> **Response times.** Acknowledgement within **one business day**; removal or restriction within
+> **two business days**; corrections and re-scores within **five business days**.
+>
+> **On a security or compliance team?** Email
+> [info@apievangelist.com](mailto:info@apievangelist.com) with *security* in the subject line and
+> you will get a person, not a form. We will tell you exactly which public URLs this profile was
+> built from so your team can see the same surface we did, and we will take the listing down on
+> request while you work through it.
+>
+> Full detail: **[Where this data comes from](https://apievangelist.com/about/where-our-data-comes-from)**
+<!-- API-EVANGELIST-PROVENANCE:END -->
+
 Accelevents is an all-in-one event management and ticketing platform for in-person, virtual, and hybrid events - covering registration, ticketing, agenda and sessions, speakers, exhibitors, networking, and engagement. The **Accelevents Open API** is a REST API (base `https://api.accelevents.com/rest`) authenticated with an organization API key generated from the account Integrations tab (Edit Enterprise → Integrations → API Key) and passed in a request header. It exposes event details, attendees, ticketing orders and sales, ticket holders, sessions, speakers, and attendee networking.
 
 **Access model (honest note):** the Open API is documented publicly at [developer.accelevents.com](https://developer.accelevents.com/docs/accelevents-api-documentation), but exercising it requires an API key that only an owner-level user on a qualifying paid plan can generate. Per the pricing page, **API & Webhooks are bundled from the Business tier and above** (Professional does not list API access; Enterprise and White Label are custom-quoted). Three endpoints below are **confirmed** directly against the public API reference (event details, all attendees, ticketing orders); the remaining operations are **named in the public reference object catalog** (Session, Speaker, Ticket Holder, Portal People) but their exact request paths are **modeled** here and flagged with `x-endpoint-modeled: true` in the OpenAPI and as `MODELED` in the collections. The authentication header name (`AUTHENTICATION`) is likewise modeled from the getting-started guide - confirm it on the reference before use.

@@ -1,0 +1,22 @@
+{
+  "provider": "accelevents",
+  "sources": [
+    "accelevents-attendees-api-openapi.yml",
+    "accelevents-events-api-openapi.yml",
+    "accelevents-orders-api-openapi.yml",
+    "accelevents-sessions-api-openapi.yml",
+    "accelevents-tickets-api-openapi.yml"
+  ],
+  "outputs": [
+    "accelevents-attendees-api-openapi.yml",
+    "accelevents-events-api-openapi.yml",
+    "accelevents-orders-api-openapi.yml",
+    "accelevents-sessions-api-openapi.yml",
+    "accelevents-tickets-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}

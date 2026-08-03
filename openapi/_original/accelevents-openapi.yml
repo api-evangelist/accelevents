@@ -1,0 +1,656 @@
+openapi: 3.0.3
+info:
+  title: Accelevents Open API
+  description: >-
+    The Accelevents Open API is a REST API for the Accelevents event management and
+    ticketing platform, covering in-person, virtual, and hybrid events. It exposes
+    event details, attendees, ticketing orders and sales, ticket holders, sessions,
+    speakers, and attendee networking. Requests are authenticated with an
+    organization API key generated from the account Integrations tab (Edit
+    Enterprise -> Integrations -> API Key) and passed in a request header. API and
+    webhook access is a paid-plan feature (Business tier and above).
+
+
+    Confirmed endpoints in this document (paths verified against the public API
+    reference at https://developer.accelevents.com/reference): the event details
+    endpoint, the all-attendees listing endpoint, and the ticketing orders
+    endpoint. All other operations are named in the Accelevents public reference
+    object catalog (Event, Attendees, Ticket Purchase, Ticket Holder, Session,
+    Speaker, Portal People) but their exact request paths are MODELED here and
+    marked with `x-endpoint-modeled: true`. The exact authentication header name is
+    also modeled; the getting-started guide refers to pasting the key into an
+    "AUTHENTICATION" header on the reference pages.
+  version: '1.0'
+  contact:
+    name: Accelevents
+    url: https://developer.accelevents.com
+servers:
+  - url: https://api.accelevents.com/rest
+    description: Accelevents Open API
+security:
+  - apiKeyAuth: []
+tags:
+  - name: Events
+    description: Event details and configuration.
+  - name: Attendees
+    description: Event attendees and people.
+  - name: Orders
+    description: Ticketing orders and sales.
+  - name: Tickets
+    description: Ticket holders and ticket types.
+  - name: Sessions
+    description: Agenda sessions, tracks, and speakers.
+paths:
+  /host/event/{eventUrl}/eventDetails:
+    parameters:
+      - $ref: '#/components/parameters/EventUrl'
+    get:
+      operationId: getEventDetails
+      tags:
+        - Events
+      summary: Get event and design details
+      description: >-
+        Retrieves event and design details for an event identified by its unique
+        event URL. Confirmed in the public API reference.
+      responses:
+        '200':
+          description: Event and design details.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Event'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /host/event/{eventUrl}/recurringStatus:
+    parameters:
+      - $ref: '#/components/parameters/EventUrl'
+    get:
+      operationId: getRecurringEventStatus
+      tags:
+        - Events
+      summary: Check recurring event status
+      description: >-
+        Returns whether an event recurs and its recurring configuration. MODELED
+        path - operation is named in the public reference but the exact route is
+        not confirmed.
+      x-endpoint-modeled: true
+      responses:
+        '200':
+          description: Recurring status.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  recurring:
+                    type: boolean
+                  recurringEventId:
+                    type: integer
+                    format: int64
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /events/{eventUrl}/staff/allAttendees:
+    parameters:
+      - $ref: '#/components/parameters/EventUrl'
+    get:
+      operationId: getAllAttendees
+      tags:
+        - Attendees
+      summary: Get all attendees
+      description: >-
+        Lists attendees for an event with pagination and search. Confirmed in the
+        public API reference.
+      parameters:
+        - name: recurringEventId
+          in: query
+          schema:
+            type: integer
+            format: int64
+            default: 0
+        - name: size
+          in: query
+          description: Number of records per page.
+          schema:
+            type: integer
+            format: int32
+            default: 100
+        - name: page
+          in: query
+          description: Zero-indexed page number.
+          schema:
+            type: integer
+            format: int32
+            default: 0
+        - name: searchString
+          in: query
+          description: Filter results by search value.
+          schema:
+            type: string
+        - name: dataType
+          in: query
+          schema:
+            type: string
+            enum:
+              - TICKET
+              - ADDON
+            default: TICKET
+        - name: isUnique
+          in: query
+          schema:
+            type: boolean
+            default: false
+      responses:
+        '200':
+          description: A page of attendees.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Attendee'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /events/{eventUrl}/staff/people:
+    parameters:
+      - $ref: '#/components/parameters/EventUrl'
+    get:
+      operationId: getPeopleList
+      tags:
+        - Attendees
+      summary: Get filtered people list
+      description: >-
+        Fetches attendees filtered by company, job title, and interests. MODELED
+        path - operation is named in the public reference but the exact route is
+        not confirmed.
+      x-endpoint-modeled: true
+      parameters:
+        - name: company
+          in: query
+          schema:
+            type: string
+        - name: jobTitle
+          in: query
+          schema:
+            type: string
+        - name: page
+          in: query
+          schema:
+            type: integer
+            format: int32
+            default: 0
+        - name: size
+          in: query
+          schema:
+            type: integer
+            format: int32
+            default: 100
+      responses:
+        '200':
+          description: A page of people.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Attendee'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /events/{eventUrl}/staff/orders:
+    parameters:
+      - $ref: '#/components/parameters/EventUrl'
+    get:
+      operationId: getTicketingOrders
+      tags:
+        - Orders
+      summary: Get ticketing orders
+      description: >-
+        Retrieves ticketing and add-on orders for an event with search, date, and
+        pagination filters. Confirmed in the public API reference.
+      parameters:
+        - name: searchString
+          in: query
+          description: Filter orders by search value.
+          schema:
+            type: string
+        - name: dataType
+          in: query
+          schema:
+            type: string
+            enum:
+              - TICKET
+              - ADDON
+        - name: searchDate
+          in: query
+          schema:
+            type: string
+            format: date
+        - name: page
+          in: query
+          schema:
+            type: integer
+            format: int32
+            default: 0
+        - name: size
+          in: query
+          schema:
+            type: integer
+            format: int32
+            default: 10
+        - name: recurringEventId
+          in: query
+          schema:
+            type: integer
+            format: int64
+            default: 0
+        - name: searchTimeStamp
+          in: query
+          description: Records created or updated after this time (MM/dd/yyyy HH:mm:ss).
+          schema:
+            type: string
+      responses:
+        '200':
+          description: A page of orders.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Order'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /events/{eventUrl}/staff/salesData:
+    parameters:
+      - $ref: '#/components/parameters/EventUrl'
+    get:
+      operationId: getTicketingSalesData
+      tags:
+        - Orders
+      summary: Get ticketing sales data
+      description: >-
+        Returns dashboard ticket and add-on sales figures for an event. MODELED
+        path - operation is named in the public reference but the exact route is
+        not confirmed.
+      x-endpoint-modeled: true
+      responses:
+        '200':
+          description: Sales summary.
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /events/{eventUrl}/staff/ticketHolders/{barcodeId}:
+    parameters:
+      - $ref: '#/components/parameters/EventUrl'
+      - name: barcodeId
+        in: path
+        required: true
+        description: The barcode ID of the ticket holder.
+        schema:
+          type: string
+    patch:
+      operationId: updateTicketHolderByBarcode
+      tags:
+        - Tickets
+      summary: Update ticket holder attributes by barcode ID
+      description: >-
+        Updates attributes for a ticket holder identified by barcode ID. MODELED
+        path - operation is named in the public reference but the exact route is
+        not confirmed.
+      x-endpoint-modeled: true
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: true
+      responses:
+        '200':
+          description: The updated ticket holder.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TicketHolder'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /events/{eventUrl}/staff/exchangeTicketType:
+    parameters:
+      - $ref: '#/components/parameters/EventUrl'
+    post:
+      operationId: exchangeTicketType
+      tags:
+        - Tickets
+      summary: Exchange ticket type
+      description: >-
+        Swaps the ticket type for an attendee. MODELED path - operation is named in
+        the public reference but the exact route is not confirmed.
+      x-endpoint-modeled: true
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                barcodeId:
+                  type: string
+                newTicketTypeId:
+                  type: integer
+                  format: int64
+      responses:
+        '200':
+          description: Exchange result.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TicketHolder'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /events/{eventUrl}/staff/sessions:
+    parameters:
+      - $ref: '#/components/parameters/EventUrl'
+    get:
+      operationId: getSessionsList
+      tags:
+        - Sessions
+      summary: Get sessions list
+      description: >-
+        Lists an event's sessions (admin view). MODELED path - operation is named
+        in the public reference but the exact route is not confirmed.
+      x-endpoint-modeled: true
+      parameters:
+        - name: page
+          in: query
+          schema:
+            type: integer
+            format: int32
+            default: 0
+        - name: size
+          in: query
+          schema:
+            type: integer
+            format: int32
+            default: 100
+      responses:
+        '200':
+          description: A page of sessions.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Session'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /events/{eventUrl}/staff/sessions/{sessionId}:
+    parameters:
+      - $ref: '#/components/parameters/EventUrl'
+      - name: sessionId
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int64
+    patch:
+      operationId: updateSession
+      tags:
+        - Sessions
+      summary: Update session
+      description: >-
+        Updates a session's details and visibility. MODELED path - operation is
+        named in the public reference but the exact route is not confirmed.
+      x-endpoint-modeled: true
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Session'
+      responses:
+        '200':
+          description: The updated session.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Session'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /events/{eventUrl}/staff/speakers:
+    parameters:
+      - $ref: '#/components/parameters/EventUrl'
+    get:
+      operationId: getSpeakersList
+      tags:
+        - Sessions
+      summary: Get speakers list
+      description: >-
+        Lists speakers for an event with pagination. MODELED path - operation is
+        named in the public reference but the exact route is not confirmed.
+      x-endpoint-modeled: true
+      responses:
+        '200':
+          description: A page of speakers.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Speaker'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+    post:
+      operationId: createSpeaker
+      tags:
+        - Sessions
+      summary: Create speaker
+      description: >-
+        Adds a speaker to an event. MODELED path - operation is named in the public
+        reference but the exact route is not confirmed.
+      x-endpoint-modeled: true
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Speaker'
+      responses:
+        '200':
+          description: The created speaker.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Speaker'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+components:
+  securitySchemes:
+    apiKeyAuth:
+      type: apiKey
+      in: header
+      name: AUTHENTICATION
+      description: >-
+        Organization API key generated from the account Integrations tab (Edit
+        Enterprise -> Integrations -> API Key), passed in a request header. The
+        header name is modeled as "AUTHENTICATION" per the getting-started guide;
+        confirm the exact name and format on the API reference before use.
+  parameters:
+    EventUrl:
+      name: eventUrl
+      in: path
+      required: true
+      description: >-
+        The unique event URL identifier (for example "demo" from
+        https://www.accelevents.com/events/demo).
+      schema:
+        type: string
+  responses:
+    Unauthorized:
+      description: Missing or invalid API key.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    NotFound:
+      description: The requested resource was not found.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  schemas:
+    Error:
+      type: object
+      properties:
+        code:
+          type: string
+        message:
+          type: string
+    Event:
+      type: object
+      properties:
+        eventUrl:
+          type: string
+        name:
+          type: string
+        startDate:
+          type: string
+          format: date-time
+        endDate:
+          type: string
+          format: date-time
+        timezone:
+          type: string
+        eventType:
+          type: string
+          description: In-person, virtual, or hybrid.
+      additionalProperties: true
+    Attendee:
+      type: object
+      properties:
+        firstName:
+          type: string
+        lastName:
+          type: string
+        email:
+          type: string
+          format: email
+        company:
+          type: string
+        jobTitle:
+          type: string
+        barcodeId:
+          type: string
+        ticketType:
+          type: string
+      additionalProperties: true
+    Order:
+      type: object
+      properties:
+        orderId:
+          type: string
+        buyerFirstName:
+          type: string
+        buyerLastName:
+          type: string
+        buyerEmail:
+          type: string
+          format: email
+        dataType:
+          type: string
+          enum:
+            - TICKET
+            - ADDON
+        total:
+          type: number
+        currency:
+          type: string
+        createdAt:
+          type: string
+          format: date-time
+      additionalProperties: true
+    TicketHolder:
+      type: object
+      properties:
+        barcodeId:
+          type: string
+        firstName:
+          type: string
+        lastName:
+          type: string
+        email:
+          type: string
+          format: email
+        ticketType:
+          type: string
+      additionalProperties: true
+    Session:
+      type: object
+      properties:
+        sessionId:
+          type: integer
+          format: int64
+        title:
+          type: string
+        description:
+          type: string
+        startTime:
+          type: string
+          format: date-time
+        endTime:
+          type: string
+          format: date-time
+        sessionType:
+          type: string
+          description: Main Stage, Regular, Networking, Lounge, Workshop, or Expo.
+        visible:
+          type: boolean
+      additionalProperties: true
+    Speaker:
+      type: object
+      properties:
+        speakerId:
+          type: integer
+          format: int64
+        firstName:
+          type: string
+        lastName:
+          type: string
+        email:
+          type: string
+          format: email
+        company:
+          type: string
+        jobTitle:
+          type: string
+        bio:
+          type: string
+      additionalProperties: true
