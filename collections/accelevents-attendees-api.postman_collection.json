@@ -1,0 +1,575 @@
+{
+  "item": [
+    {
+      "id": "db411e77-6f5b-4c80-a599-ebd2968345e3",
+      "name": "Attendees",
+      "description": {
+        "content": "Event attendees and people.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "b992956b-e0f6-49f1-9f7a-b2d83768e20b",
+          "name": "Get all attendees",
+          "request": {
+            "name": "Get all attendees",
+            "description": {
+              "content": "Lists attendees for an event with pagination and search. Confirmed in the public API reference.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "events",
+                ":eventUrl",
+                "staff",
+                "allAttendees"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "recurringEventId",
+                  "value": "0"
+                },
+                {
+                  "disabled": false,
+                  "key": "size",
+                  "value": "100",
+                  "description": "Number of records per page."
+                },
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "0",
+                  "description": "Zero-indexed page number."
+                },
+                {
+                  "disabled": false,
+                  "key": "searchString",
+                  "value": "<string>",
+                  "description": "Filter results by search value."
+                },
+                {
+                  "disabled": false,
+                  "key": "dataType",
+                  "value": "TICKET"
+                },
+                {
+                  "disabled": false,
+                  "key": "isUnique",
+                  "value": "false"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "eventUrl",
+                  "description": "(Required) The unique event URL identifier (for example \"demo\" from https://www.accelevents.com/events/demo)."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "cc678875-70c2-48e4-bbfa-1d18d6f19ca0",
+              "name": "A page of attendees.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "events",
+                    ":eventUrl",
+                    "staff",
+                    "allAttendees"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "recurringEventId",
+                      "value": "0"
+                    },
+                    {
+                      "key": "size",
+                      "value": "100"
+                    },
+                    {
+                      "key": "page",
+                      "value": "0"
+                    },
+                    {
+                      "key": "searchString",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "dataType",
+                      "value": "TICKET"
+                    },
+                    {
+                      "key": "isUnique",
+                      "value": "false"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "eventUrl",
+                      "description": "(Required) The unique event URL identifier (for example \"demo\" from https://www.accelevents.com/events/demo)."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "AUTHENTICATION",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"firstName\": \"string\",\n      \"lastName\": \"string\",\n      \"email\": \"uac9@TChQRSfXmZMfD.gdft\",\n      \"company\": \"string\",\n      \"jobTitle\": \"string\",\n      \"barcodeId\": \"string\",\n      \"ticketType\": \"string\"\n    },\n    {\n      \"firstName\": \"string\",\n      \"lastName\": \"string\",\n      \"email\": \"I2LBdyejUlgwhb@ygedzNPaPNOFQpZrmkEmm.gw\",\n      \"company\": \"string\",\n      \"jobTitle\": \"string\",\n      \"barcodeId\": \"string\",\n      \"ticketType\": \"string\",\n      \"key_0\": 3444\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "32884305-23fc-4e54-8e9a-40cba6b38711",
+              "name": "Missing or invalid API key.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "events",
+                    ":eventUrl",
+                    "staff",
+                    "allAttendees"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "recurringEventId",
+                      "value": "0"
+                    },
+                    {
+                      "key": "size",
+                      "value": "100"
+                    },
+                    {
+                      "key": "page",
+                      "value": "0"
+                    },
+                    {
+                      "key": "searchString",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "dataType",
+                      "value": "TICKET"
+                    },
+                    {
+                      "key": "isUnique",
+                      "value": "false"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "eventUrl",
+                      "description": "(Required) The unique event URL identifier (for example \"demo\" from https://www.accelevents.com/events/demo)."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "AUTHENTICATION",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f8d1aeb0-0aea-4ca3-90a0-114beca36ff8",
+              "name": "The requested resource was not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "events",
+                    ":eventUrl",
+                    "staff",
+                    "allAttendees"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "recurringEventId",
+                      "value": "0"
+                    },
+                    {
+                      "key": "size",
+                      "value": "100"
+                    },
+                    {
+                      "key": "page",
+                      "value": "0"
+                    },
+                    {
+                      "key": "searchString",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "dataType",
+                      "value": "TICKET"
+                    },
+                    {
+                      "key": "isUnique",
+                      "value": "false"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "eventUrl",
+                      "description": "(Required) The unique event URL identifier (for example \"demo\" from https://www.accelevents.com/events/demo)."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "AUTHENTICATION",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "8c1bad62-86a9-4466-ab16-32619afe8cc1",
+          "name": "Get filtered people list",
+          "request": {
+            "name": "Get filtered people list",
+            "description": {
+              "content": "Fetches attendees filtered by company, job title, and interests. MODELED path - operation is named in the public reference but the exact route is not confirmed.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "events",
+                ":eventUrl",
+                "staff",
+                "people"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "company",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "jobTitle",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "0"
+                },
+                {
+                  "disabled": false,
+                  "key": "size",
+                  "value": "100"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "eventUrl",
+                  "description": "(Required) The unique event URL identifier (for example \"demo\" from https://www.accelevents.com/events/demo)."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "f4091744-5ea8-42a2-9664-62b61203796c",
+              "name": "A page of people.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "events",
+                    ":eventUrl",
+                    "staff",
+                    "people"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "company",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "jobTitle",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "0"
+                    },
+                    {
+                      "key": "size",
+                      "value": "100"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "eventUrl",
+                      "description": "(Required) The unique event URL identifier (for example \"demo\" from https://www.accelevents.com/events/demo)."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "AUTHENTICATION",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"firstName\": \"string\",\n      \"lastName\": \"string\",\n      \"email\": \"uac9@TChQRSfXmZMfD.gdft\",\n      \"company\": \"string\",\n      \"jobTitle\": \"string\",\n      \"barcodeId\": \"string\",\n      \"ticketType\": \"string\"\n    },\n    {\n      \"firstName\": \"string\",\n      \"lastName\": \"string\",\n      \"email\": \"I2LBdyejUlgwhb@ygedzNPaPNOFQpZrmkEmm.gw\",\n      \"company\": \"string\",\n      \"jobTitle\": \"string\",\n      \"barcodeId\": \"string\",\n      \"ticketType\": \"string\",\n      \"key_0\": 3444\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e00dee28-7e35-4627-889d-df57b26da487",
+              "name": "Missing or invalid API key.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "events",
+                    ":eventUrl",
+                    "staff",
+                    "people"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "company",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "jobTitle",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "0"
+                    },
+                    {
+                      "key": "size",
+                      "value": "100"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "eventUrl",
+                      "description": "(Required) The unique event URL identifier (for example \"demo\" from https://www.accelevents.com/events/demo)."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "AUTHENTICATION",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.accelevents.com/rest",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "AUTHENTICATION"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "ff631a5d-8c40-412f-b9a0-ee5f5cdee10a",
+    "name": "Accelevents Open Attendees API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Accelevents Open API is a REST API for the Accelevents event management and ticketing platform, covering in-person, virtual, and hybrid events. It exposes event details, attendees, ticketing orders and sales, ticket holders, sessions, speakers, and attendee networking. Requests are authenticated with an organization API key generated from the account Integrations tab (Edit Enterprise -> Integrations -> API Key) and passed in a request header. API and webhook access is a paid-plan feature (Business tier and above).\n\nConfirmed endpoints in this document (paths verified against the public API reference at https://developer.accelevents.com/reference): the event details endpoint, the all-attendees listing endpoint, and the ticketing orders endpoint. All other operations are named in the Accelevents public reference object catalog (Event, Attendees, Ticket Purchase, Ticket Holder, Session, Speaker, Portal People) but their exact request paths are MODELED here and marked with `x-endpoint-modeled: true`. The exact authentication header name is also modeled; the getting-started guide refers to pasting the key into an \"AUTHENTICATION\" header on the reference pages.\n\nContact Support:\n Name: Accelevents",
+      "type": "text/plain"
+    }
+  }
+}

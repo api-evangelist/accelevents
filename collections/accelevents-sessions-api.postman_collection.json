@@ -1,0 +1,846 @@
+{
+  "item": [
+    {
+      "id": "b90e4d9b-bc6b-4ed7-a7c0-faa793ed75a8",
+      "name": "Sessions",
+      "description": {
+        "content": "Agenda sessions, tracks, and speakers.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "c5f36d45-54d4-40ae-b361-ea5083251d87",
+          "name": "Get sessions list",
+          "request": {
+            "name": "Get sessions list",
+            "description": {
+              "content": "Lists an event's sessions (admin view). MODELED path - operation is named in the public reference but the exact route is not confirmed.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "events",
+                ":eventUrl",
+                "staff",
+                "sessions"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "0"
+                },
+                {
+                  "disabled": false,
+                  "key": "size",
+                  "value": "100"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "eventUrl",
+                  "description": "(Required) The unique event URL identifier (for example \"demo\" from https://www.accelevents.com/events/demo)."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "cd6a0f87-c9ac-4389-8e95-dc38b85522ce",
+              "name": "A page of sessions.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "events",
+                    ":eventUrl",
+                    "staff",
+                    "sessions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "0"
+                    },
+                    {
+                      "key": "size",
+                      "value": "100"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "eventUrl",
+                      "description": "(Required) The unique event URL identifier (for example \"demo\" from https://www.accelevents.com/events/demo)."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "AUTHENTICATION",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"sessionId\": 1765,\n      \"title\": \"string\",\n      \"description\": \"string\",\n      \"startTime\": \"1956-01-22T18:54:00.362Z\",\n      \"endTime\": \"1972-04-11T17:54:50.961Z\",\n      \"sessionType\": \"string\",\n      \"visible\": true\n    },\n    {\n      \"sessionId\": 3,\n      \"title\": \"string\",\n      \"description\": \"string\",\n      \"startTime\": \"1947-04-26T10:33:33.838Z\",\n      \"endTime\": \"1960-10-10T06:33:07.051Z\",\n      \"sessionType\": \"string\",\n      \"visible\": true\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "aa2a8588-5ca2-45cc-b40d-b5598ed09ad5",
+              "name": "Missing or invalid API key.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "events",
+                    ":eventUrl",
+                    "staff",
+                    "sessions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "0"
+                    },
+                    {
+                      "key": "size",
+                      "value": "100"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "eventUrl",
+                      "description": "(Required) The unique event URL identifier (for example \"demo\" from https://www.accelevents.com/events/demo)."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "AUTHENTICATION",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "f7d70428-7266-44c2-92dc-dde51204813e",
+          "name": "Update session",
+          "request": {
+            "name": "Update session",
+            "description": {
+              "content": "Updates a session's details and visibility. MODELED path - operation is named in the public reference but the exact route is not confirmed.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "events",
+                ":eventUrl",
+                "staff",
+                "sessions",
+                ":sessionId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "eventUrl",
+                  "description": "(Required) The unique event URL identifier (for example \"demo\" from https://www.accelevents.com/events/demo)."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<long>",
+                  "key": "sessionId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"sessionId\": \"<long>\",\n  \"title\": \"<string>\",\n  \"description\": \"<string>\",\n  \"startTime\": \"<dateTime>\",\n  \"endTime\": \"<dateTime>\",\n  \"sessionType\": \"<string>\",\n  \"visible\": \"<boolean>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "3dea3414-e5d8-49d5-95b6-9bdd03cda2b8",
+              "name": "The updated session.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "events",
+                    ":eventUrl",
+                    "staff",
+                    "sessions",
+                    ":sessionId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "eventUrl",
+                      "description": "(Required) The unique event URL identifier (for example \"demo\" from https://www.accelevents.com/events/demo)."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "sessionId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "AUTHENTICATION",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"sessionId\": \"<long>\",\n  \"title\": \"<string>\",\n  \"description\": \"<string>\",\n  \"startTime\": \"<dateTime>\",\n  \"endTime\": \"<dateTime>\",\n  \"sessionType\": \"<string>\",\n  \"visible\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"sessionId\": \"<long>\",\n  \"title\": \"<string>\",\n  \"description\": \"<string>\",\n  \"startTime\": \"<dateTime>\",\n  \"endTime\": \"<dateTime>\",\n  \"sessionType\": \"<string>\",\n  \"visible\": \"<boolean>\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "7b6c1e3a-2a6a-4b5f-a70e-98c4f0bf7d34",
+              "name": "Missing or invalid API key.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "events",
+                    ":eventUrl",
+                    "staff",
+                    "sessions",
+                    ":sessionId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "eventUrl",
+                      "description": "(Required) The unique event URL identifier (for example \"demo\" from https://www.accelevents.com/events/demo)."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "sessionId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "AUTHENTICATION",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"sessionId\": \"<long>\",\n  \"title\": \"<string>\",\n  \"description\": \"<string>\",\n  \"startTime\": \"<dateTime>\",\n  \"endTime\": \"<dateTime>\",\n  \"sessionType\": \"<string>\",\n  \"visible\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "575119b7-acdf-4d5d-a45e-e2acb683c509",
+              "name": "The requested resource was not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "events",
+                    ":eventUrl",
+                    "staff",
+                    "sessions",
+                    ":sessionId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "eventUrl",
+                      "description": "(Required) The unique event URL identifier (for example \"demo\" from https://www.accelevents.com/events/demo)."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "sessionId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "AUTHENTICATION",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"sessionId\": \"<long>\",\n  \"title\": \"<string>\",\n  \"description\": \"<string>\",\n  \"startTime\": \"<dateTime>\",\n  \"endTime\": \"<dateTime>\",\n  \"sessionType\": \"<string>\",\n  \"visible\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "33d49323-12f5-4473-bc7a-5f82ff5027e2",
+          "name": "Get speakers list",
+          "request": {
+            "name": "Get speakers list",
+            "description": {
+              "content": "Lists speakers for an event with pagination. MODELED path - operation is named in the public reference but the exact route is not confirmed.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "events",
+                ":eventUrl",
+                "staff",
+                "speakers"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "eventUrl",
+                  "description": "(Required) The unique event URL identifier (for example \"demo\" from https://www.accelevents.com/events/demo)."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "93fa9e0c-3ccb-4800-91da-14ae6d026e1e",
+              "name": "A page of speakers.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "events",
+                    ":eventUrl",
+                    "staff",
+                    "speakers"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "eventUrl",
+                      "description": "(Required) The unique event URL identifier (for example \"demo\" from https://www.accelevents.com/events/demo)."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "AUTHENTICATION",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"speakerId\": 2725,\n      \"firstName\": \"string\",\n      \"lastName\": \"string\",\n      \"email\": \"q88GVRxF@DKkXpQoufzwNOihsANGzowerM.yneh\",\n      \"company\": \"string\",\n      \"jobTitle\": \"string\",\n      \"bio\": \"string\"\n    },\n    {\n      \"speakerId\": 545,\n      \"firstName\": \"string\",\n      \"lastName\": \"string\",\n      \"email\": \"vhPt6jf9rPPC@gGbdbHHGVtKmoPKOItoRU.feh\",\n      \"company\": \"string\",\n      \"jobTitle\": \"string\",\n      \"bio\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "0f2be0de-fb45-414d-80a1-a19af325163f",
+              "name": "Missing or invalid API key.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "events",
+                    ":eventUrl",
+                    "staff",
+                    "speakers"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "eventUrl",
+                      "description": "(Required) The unique event URL identifier (for example \"demo\" from https://www.accelevents.com/events/demo)."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "AUTHENTICATION",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "bb07b6b5-c72a-4757-be5b-a50553c03178",
+          "name": "Create speaker",
+          "request": {
+            "name": "Create speaker",
+            "description": {
+              "content": "Adds a speaker to an event. MODELED path - operation is named in the public reference but the exact route is not confirmed.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "events",
+                ":eventUrl",
+                "staff",
+                "speakers"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "eventUrl",
+                  "description": "(Required) The unique event URL identifier (for example \"demo\" from https://www.accelevents.com/events/demo)."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"speakerId\": \"<long>\",\n  \"firstName\": \"<string>\",\n  \"lastName\": \"<string>\",\n  \"email\": \"<email>\",\n  \"company\": \"<string>\",\n  \"jobTitle\": \"<string>\",\n  \"bio\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "b0f852df-0614-490b-b1f0-9079611f6ec7",
+              "name": "The created speaker.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "events",
+                    ":eventUrl",
+                    "staff",
+                    "speakers"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "eventUrl",
+                      "description": "(Required) The unique event URL identifier (for example \"demo\" from https://www.accelevents.com/events/demo)."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "AUTHENTICATION",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"speakerId\": \"<long>\",\n  \"firstName\": \"<string>\",\n  \"lastName\": \"<string>\",\n  \"email\": \"<email>\",\n  \"company\": \"<string>\",\n  \"jobTitle\": \"<string>\",\n  \"bio\": \"<string>\",\n  \"key_0\": 89.35630616671686,\n  \"key_1\": true,\n  \"key_2\": \"string\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"speakerId\": \"<long>\",\n  \"firstName\": \"<string>\",\n  \"lastName\": \"<string>\",\n  \"email\": \"<email>\",\n  \"company\": \"<string>\",\n  \"jobTitle\": \"<string>\",\n  \"bio\": \"<string>\",\n  \"key_0\": 89.35630616671686,\n  \"key_1\": true,\n  \"key_2\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "371fb112-f8b4-4cb4-8fad-00633b8e7206",
+              "name": "Missing or invalid API key.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "events",
+                    ":eventUrl",
+                    "staff",
+                    "speakers"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "eventUrl",
+                      "description": "(Required) The unique event URL identifier (for example \"demo\" from https://www.accelevents.com/events/demo)."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "AUTHENTICATION",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"speakerId\": \"<long>\",\n  \"firstName\": \"<string>\",\n  \"lastName\": \"<string>\",\n  \"email\": \"<email>\",\n  \"company\": \"<string>\",\n  \"jobTitle\": \"<string>\",\n  \"bio\": \"<string>\",\n  \"key_0\": 89.35630616671686,\n  \"key_1\": true,\n  \"key_2\": \"string\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.accelevents.com/rest",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "AUTHENTICATION"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "c01d9575-4882-4929-9407-34d37a3513f1",
+    "name": "Accelevents Open Attendees Sessions API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Accelevents Open API is a REST API for the Accelevents event management and ticketing platform, covering in-person, virtual, and hybrid events. It exposes event details, attendees, ticketing orders and sales, ticket holders, sessions, speakers, and attendee networking. Requests are authenticated with an organization API key generated from the account Integrations tab (Edit Enterprise -> Integrations -> API Key) and passed in a request header. API and webhook access is a paid-plan feature (Business tier and above).\n\nConfirmed endpoints in this document (paths verified against the public API reference at https://developer.accelevents.com/reference): the event details endpoint, the all-attendees listing endpoint, and the ticketing orders endpoint. All other operations are named in the Accelevents public reference object catalog (Event, Attendees, Ticket Purchase, Ticket Holder, Session, Speaker, Portal People) but their exact request paths are MODELED here and marked with `x-endpoint-modeled: true`. The exact authentication header name is also modeled; the getting-started guide refers to pasting the key into an \"AUTHENTICATION\" header on the reference pages.\n\nContact Support:\n Name: Accelevents",
+      "type": "text/plain"
+    }
+  }
+}

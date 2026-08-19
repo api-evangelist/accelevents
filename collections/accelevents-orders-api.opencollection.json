@@ -1,0 +1,101 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Accelevents Open Attendees Orders API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "AUTHENTICATION",
+      "value": "{{AUTHENTICATION}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Orders",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get ticketing orders",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.accelevents.com/rest/events/:eventUrl/staff/orders",
+            "params": [
+              {
+                "name": "eventUrl",
+                "value": "",
+                "type": "path",
+                "description": "The unique event URL identifier (for example \"demo\" from https://www.accelevents.com/events/demo)."
+              },
+              {
+                "name": "searchString",
+                "value": "",
+                "type": "query",
+                "description": "Filter orders by search value."
+              },
+              {
+                "name": "dataType",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "searchDate",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "size",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "recurringEventId",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "searchTimeStamp",
+                "value": "",
+                "type": "query",
+                "description": "Records created or updated after this time (MM/dd/yyyy HH:mm:ss)."
+              }
+            ]
+          },
+          "docs": "Retrieves ticketing and add-on orders for an event with search, date, and pagination filters. Confirmed in the public API reference."
+        },
+        {
+          "info": {
+            "name": "Get ticketing sales data",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.accelevents.com/rest/events/:eventUrl/staff/salesData",
+            "params": [
+              {
+                "name": "eventUrl",
+                "value": "",
+                "type": "path",
+                "description": "The unique event URL identifier (for example \"demo\" from https://www.accelevents.com/events/demo)."
+              }
+            ]
+          },
+          "docs": "Returns dashboard ticket and add-on sales figures for an event. MODELED path - operation is named in the public reference but the exact route is not confirmed."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

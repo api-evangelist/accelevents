@@ -1,0 +1,125 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Accelevents Open Attendees Sessions API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "AUTHENTICATION",
+      "value": "{{AUTHENTICATION}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Sessions",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get sessions list",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.accelevents.com/rest/events/:eventUrl/staff/sessions",
+            "params": [
+              {
+                "name": "eventUrl",
+                "value": "",
+                "type": "path",
+                "description": "The unique event URL identifier (for example \"demo\" from https://www.accelevents.com/events/demo)."
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "size",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Lists an event's sessions (admin view). MODELED path - operation is named in the public reference but the exact route is not confirmed."
+        },
+        {
+          "info": {
+            "name": "Update session",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.accelevents.com/rest/events/:eventUrl/staff/sessions/:sessionId",
+            "params": [
+              {
+                "name": "eventUrl",
+                "value": "",
+                "type": "path",
+                "description": "The unique event URL identifier (for example \"demo\" from https://www.accelevents.com/events/demo)."
+              },
+              {
+                "name": "sessionId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates a session's details and visibility. MODELED path - operation is named in the public reference but the exact route is not confirmed."
+        },
+        {
+          "info": {
+            "name": "Get speakers list",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.accelevents.com/rest/events/:eventUrl/staff/speakers",
+            "params": [
+              {
+                "name": "eventUrl",
+                "value": "",
+                "type": "path",
+                "description": "The unique event URL identifier (for example \"demo\" from https://www.accelevents.com/events/demo)."
+              }
+            ]
+          },
+          "docs": "Lists speakers for an event with pagination. MODELED path - operation is named in the public reference but the exact route is not confirmed."
+        },
+        {
+          "info": {
+            "name": "Create speaker",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.accelevents.com/rest/events/:eventUrl/staff/speakers",
+            "params": [
+              {
+                "name": "eventUrl",
+                "value": "",
+                "type": "path",
+                "description": "The unique event URL identifier (for example \"demo\" from https://www.accelevents.com/events/demo)."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Adds a speaker to an event. MODELED path - operation is named in the public reference but the exact route is not confirmed."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

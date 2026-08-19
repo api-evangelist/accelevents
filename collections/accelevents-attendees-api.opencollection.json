@@ -1,0 +1,117 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Accelevents Open Attendees API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "AUTHENTICATION",
+      "value": "{{AUTHENTICATION}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Attendees",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get all attendees",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.accelevents.com/rest/events/:eventUrl/staff/allAttendees",
+            "params": [
+              {
+                "name": "eventUrl",
+                "value": "",
+                "type": "path",
+                "description": "The unique event URL identifier (for example \"demo\" from https://www.accelevents.com/events/demo)."
+              },
+              {
+                "name": "recurringEventId",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "size",
+                "value": "",
+                "type": "query",
+                "description": "Number of records per page."
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Zero-indexed page number."
+              },
+              {
+                "name": "searchString",
+                "value": "",
+                "type": "query",
+                "description": "Filter results by search value."
+              },
+              {
+                "name": "dataType",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "isUnique",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Lists attendees for an event with pagination and search. Confirmed in the public API reference."
+        },
+        {
+          "info": {
+            "name": "Get filtered people list",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.accelevents.com/rest/events/:eventUrl/staff/people",
+            "params": [
+              {
+                "name": "eventUrl",
+                "value": "",
+                "type": "path",
+                "description": "The unique event URL identifier (for example \"demo\" from https://www.accelevents.com/events/demo)."
+              },
+              {
+                "name": "company",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "jobTitle",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "size",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Fetches attendees filtered by company, job title, and interests. MODELED path - operation is named in the public reference but the exact route is not confirmed."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

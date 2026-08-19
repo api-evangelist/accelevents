@@ -1,0 +1,536 @@
+{
+  "item": [
+    {
+      "id": "8b1e7f85-5349-4f54-bc82-526ed42a32e3",
+      "name": "Orders",
+      "description": {
+        "content": "Ticketing orders and sales.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "5f6b6e15-325e-4355-8496-60bf08fe5a2a",
+          "name": "Get ticketing orders",
+          "request": {
+            "name": "Get ticketing orders",
+            "description": {
+              "content": "Retrieves ticketing and add-on orders for an event with search, date, and pagination filters. Confirmed in the public API reference.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "events",
+                ":eventUrl",
+                "staff",
+                "orders"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "searchString",
+                  "value": "<string>",
+                  "description": "Filter orders by search value."
+                },
+                {
+                  "disabled": false,
+                  "key": "dataType",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "searchDate",
+                  "value": "<date>"
+                },
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "0"
+                },
+                {
+                  "disabled": false,
+                  "key": "size",
+                  "value": "10"
+                },
+                {
+                  "disabled": false,
+                  "key": "recurringEventId",
+                  "value": "0"
+                },
+                {
+                  "disabled": false,
+                  "key": "searchTimeStamp",
+                  "value": "<string>",
+                  "description": "Records created or updated after this time (MM/dd/yyyy HH:mm:ss)."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "eventUrl",
+                  "description": "(Required) The unique event URL identifier (for example \"demo\" from https://www.accelevents.com/events/demo)."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "b3e4ca4a-4f84-490d-a7c6-67386c56a86a",
+              "name": "A page of orders.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "events",
+                    ":eventUrl",
+                    "staff",
+                    "orders"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "searchString",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "dataType",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "searchDate",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "0"
+                    },
+                    {
+                      "key": "size",
+                      "value": "10"
+                    },
+                    {
+                      "key": "recurringEventId",
+                      "value": "0"
+                    },
+                    {
+                      "key": "searchTimeStamp",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "eventUrl",
+                      "description": "(Required) The unique event URL identifier (for example \"demo\" from https://www.accelevents.com/events/demo)."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "AUTHENTICATION",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"orderId\": \"string\",\n      \"buyerFirstName\": \"string\",\n      \"buyerLastName\": \"string\",\n      \"buyerEmail\": \"z0EuAx6GU26@sQIvBvqCWZsLagLpx.pqmb\",\n      \"dataType\": \"TICKET\",\n      \"total\": 275.16036161487676,\n      \"currency\": \"string\",\n      \"createdAt\": \"2006-12-15T05:24:25.868Z\"\n    },\n    {\n      \"orderId\": \"string\",\n      \"buyerFirstName\": \"string\",\n      \"buyerLastName\": \"string\",\n      \"buyerEmail\": \"7zKNIaA3V@AtKxxxSqElYy.mra\",\n      \"dataType\": \"TICKET\",\n      \"total\": 7083.110854167927,\n      \"currency\": \"string\",\n      \"createdAt\": \"1960-03-19T11:07:42.515Z\",\n      \"key_0\": \"string\",\n      \"key_1\": 2673.0264285355356\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ec6e643d-cddd-48e2-8f83-1b85764a6c41",
+              "name": "Missing or invalid API key.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "events",
+                    ":eventUrl",
+                    "staff",
+                    "orders"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "searchString",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "dataType",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "searchDate",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "0"
+                    },
+                    {
+                      "key": "size",
+                      "value": "10"
+                    },
+                    {
+                      "key": "recurringEventId",
+                      "value": "0"
+                    },
+                    {
+                      "key": "searchTimeStamp",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "eventUrl",
+                      "description": "(Required) The unique event URL identifier (for example \"demo\" from https://www.accelevents.com/events/demo)."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "AUTHENTICATION",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "8ae5e05d-060d-40e1-8643-6832f7a3ff48",
+              "name": "The requested resource was not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "events",
+                    ":eventUrl",
+                    "staff",
+                    "orders"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "searchString",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "dataType",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "searchDate",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "0"
+                    },
+                    {
+                      "key": "size",
+                      "value": "10"
+                    },
+                    {
+                      "key": "recurringEventId",
+                      "value": "0"
+                    },
+                    {
+                      "key": "searchTimeStamp",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "eventUrl",
+                      "description": "(Required) The unique event URL identifier (for example \"demo\" from https://www.accelevents.com/events/demo)."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "AUTHENTICATION",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b7de3118-bc98-4878-820a-da4e144581cb",
+          "name": "Get ticketing sales data",
+          "request": {
+            "name": "Get ticketing sales data",
+            "description": {
+              "content": "Returns dashboard ticket and add-on sales figures for an event. MODELED path - operation is named in the public reference but the exact route is not confirmed.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "events",
+                ":eventUrl",
+                "staff",
+                "salesData"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "eventUrl",
+                  "description": "(Required) The unique event URL identifier (for example \"demo\" from https://www.accelevents.com/events/demo)."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "cd862ddf-9115-4b04-8005-33abeee531a5",
+              "name": "Sales summary.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "events",
+                    ":eventUrl",
+                    "staff",
+                    "salesData"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "eventUrl",
+                      "description": "(Required) The unique event URL identifier (for example \"demo\" from https://www.accelevents.com/events/demo)."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "AUTHENTICATION",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"key_0\": true,\n  \"key_1\": \"string\",\n  \"key_2\": 2765.646859372346\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "7ecaad4d-cba0-4103-854e-90061dfc28cc",
+              "name": "Missing or invalid API key.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "events",
+                    ":eventUrl",
+                    "staff",
+                    "salesData"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "eventUrl",
+                      "description": "(Required) The unique event URL identifier (for example \"demo\" from https://www.accelevents.com/events/demo)."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "AUTHENTICATION",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.accelevents.com/rest",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "AUTHENTICATION"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "e4d8e97c-c57f-47b5-9778-6def5e7929e0",
+    "name": "Accelevents Open Attendees Orders API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Accelevents Open API is a REST API for the Accelevents event management and ticketing platform, covering in-person, virtual, and hybrid events. It exposes event details, attendees, ticketing orders and sales, ticket holders, sessions, speakers, and attendee networking. Requests are authenticated with an organization API key generated from the account Integrations tab (Edit Enterprise -> Integrations -> API Key) and passed in a request header. API and webhook access is a paid-plan feature (Business tier and above).\n\nConfirmed endpoints in this document (paths verified against the public API reference at https://developer.accelevents.com/reference): the event details endpoint, the all-attendees listing endpoint, and the ticketing orders endpoint. All other operations are named in the Accelevents public reference object catalog (Event, Attendees, Ticket Purchase, Ticket Holder, Session, Speaker, Portal People) but their exact request paths are MODELED here and marked with `x-endpoint-modeled: true`. The exact authentication header name is also modeled; the getting-started guide refers to pasting the key into an \"AUTHENTICATION\" header on the reference pages.\n\nContact Support:\n Name: Accelevents",
+      "type": "text/plain"
+    }
+  }
+}
