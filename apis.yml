@@ -28,6 +28,13 @@ image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/accelevent
 tags:
 - Event Management
 - Ticketing
+- Event
+- Registration
+- Virtual Events
+- Sessions
+tags_raw:
+- Event Management
+- Ticketing
 - Events
 - Registration
 - Virtual Events
@@ -62,6 +69,8 @@ apis:
   humanURL: https://developer.accelevents.com/reference/event-and-design-details
   baseURL: https://api.accelevents.com/rest
   tags:
+  - Event
+  tags_raw:
   - Events
   properties:
   - type: OpenAPI
@@ -82,6 +91,8 @@ apis:
   humanURL: https://developer.accelevents.com/reference/event-and-design-details
   baseURL: https://api.accelevents.com/rest
   tags:
+  - Order
+  tags_raw:
   - Orders
   properties:
   - type: OpenAPI
