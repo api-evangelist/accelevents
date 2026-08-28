@@ -11,6 +11,18 @@ description: Accelevents is an all-in-one event management and ticketing platfor
   speakers, and attendee networking. API and webhook access is a paid-plan feature
   (Business tier and above), so many endpoints are documented publicly but require
   a provisioned key to exercise.
+deliveryModel:
+  model: saas
+  open_source: false
+  commercial: true
+  callable_host: true
+  label: Hosted service · you call their endpoint
+  confidence: high
+  source:
+  - openapi
+  - pricing
+  generated: '2026-08-28'
+  method: derived
 accessModel:
   pricing: paid
   onboarding: self-serve
