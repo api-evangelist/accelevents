@@ -132,14 +132,6 @@ paths:
         '401':
           $ref: '#/components/responses/Unauthorized'
 components:
-  parameters:
-    EventUrl:
-      name: eventUrl
-      in: path
-      required: true
-      description: The unique event URL identifier (for example "demo" from https://www.accelevents.com/events/demo).
-      schema:
-        type: string
   schemas:
     Session:
       type: object
@@ -203,6 +195,14 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/Error'
+  parameters:
+    EventUrl:
+      name: eventUrl
+      in: path
+      required: true
+      description: The unique event URL identifier (for example "demo" from https://www.accelevents.com/events/demo).
+      schema:
+        type: string
   securitySchemes:
     apiKeyAuth:
       type: apiKey

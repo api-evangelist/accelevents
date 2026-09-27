@@ -149,6 +149,8 @@ apis:
   humanURL: https://developer.accelevents.com/reference/event-and-design-details
   baseURL: https://api.accelevents.com/rest
   tags:
+  - Ticketing
+  tags_raw:
   - Tickets
   properties:
   - type: OpenAPI
