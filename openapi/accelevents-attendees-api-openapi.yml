@@ -126,13 +126,6 @@ paths:
           $ref: '#/components/responses/Unauthorized'
 components:
   schemas:
-    Error:
-      type: object
-      properties:
-        code:
-          type: string
-        message:
-          type: string
     Attendee:
       type: object
       properties:
@@ -152,6 +145,21 @@ components:
         ticketType:
           type: string
       additionalProperties: true
+    Error:
+      type: object
+      properties:
+        code:
+          type: string
+        message:
+          type: string
+  parameters:
+    EventUrl:
+      name: eventUrl
+      in: path
+      required: true
+      description: The unique event URL identifier (for example "demo" from https://www.accelevents.com/events/demo).
+      schema:
+        type: string
   responses:
     NotFound:
       description: The requested resource was not found.
@@ -165,14 +173,6 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/Error'
-  parameters:
-    EventUrl:
-      name: eventUrl
-      in: path
-      required: true
-      description: The unique event URL identifier (for example "demo" from https://www.accelevents.com/events/demo).
-      schema:
-        type: string
   securitySchemes:
     apiKeyAuth:
       type: apiKey
