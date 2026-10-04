@@ -63,14 +63,6 @@ paths:
         '404':
           $ref: '#/components/responses/NotFound'
 components:
-  parameters:
-    EventUrl:
-      name: eventUrl
-      in: path
-      required: true
-      description: The unique event URL identifier (for example "demo" from https://www.accelevents.com/events/demo).
-      schema:
-        type: string
   responses:
     NotFound:
       description: The requested resource was not found.
@@ -84,7 +76,22 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/Error'
+  parameters:
+    EventUrl:
+      name: eventUrl
+      in: path
+      required: true
+      description: The unique event URL identifier (for example "demo" from https://www.accelevents.com/events/demo).
+      schema:
+        type: string
   schemas:
+    Error:
+      type: object
+      properties:
+        code:
+          type: string
+        message:
+          type: string
     Event:
       type: object
       properties:
@@ -104,13 +111,6 @@ components:
           type: string
           description: In-person, virtual, or hybrid.
       additionalProperties: true
-    Error:
-      type: object
-      properties:
-        code:
-          type: string
-        message:
-          type: string
   securitySchemes:
     apiKeyAuth:
       type: apiKey
