@@ -56,7 +56,7 @@ tags_raw:
 - Virtual Events
 - Sessions
 created: '2026-07-05'
-modified: '2026-07-05'
+modified: '2026-10-06'
 specificationVersion: '0.23'
 apis:
 - aid: accelevents:accelevents-attendees-api
@@ -166,6 +166,8 @@ apis:
   - type: APIReference
     url: https://developer.accelevents.com/reference/get-ticketing-orders
 common:
+- url: https://www.accelevents.com/blog
+  type: Blog
 - type: AgenticAccess
   url: agentic-access/accelevents-agentic-access.yml
 - type: TrustCenter
