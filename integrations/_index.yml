@@ -28,19 +28,6 @@
     builder: unknown (not in the directory record)
   status: not-a-workflow
   arazzo: null
-- slug: accelevents-zoom-own
-  label: Zoom (own)
-  partner: zoom
-  partner_name: Zoom (own)
-  category: Zoom app
-  type: marketplace
-  marketplace: own
-  channel: partner-built
-  evidence: https://marketplace.zoom.us/apps/9IVt0LxvSUyBKUrru5PD_w
-  source: edge
-  relationship: platform-app
-  status: not-a-workflow
-  arazzo: null
 - slug: accelevents-stripe-partner-ecosystem
   label: Stripe Partner Ecosystem
   partner: stripe
@@ -82,5 +69,31 @@
       location: Boston, United States
     detected_by: sweep-stripe-app-marketplace.py
     detected: '2026-10-21'
+  status: not-a-workflow
+  arazzo: null
+- slug: accelevents-zoom-own
+  label: Zoom (own)
+  partner: zoom
+  partner_name: Zoom (own)
+  category: Zoom app
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  evidence: https://marketplace.zoom.us/apps/9IVt0LxvSUyBKUrru5PD_w
+  source: edge
+  relationship: platform-app
+  status: not-a-workflow
+  arazzo: null
+- slug: accelevents-hubspot-own
+  label: HubSpot (own)
+  partner: hubspot
+  partner_name: HubSpot (own)
+  category: EVENT_MANAGEMENT
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  evidence: https://ecosystem.hubspot.com/marketplace/listing/accelevents
+  source: edge
+  relationship: platform-app
   status: not-a-workflow
   arazzo: null
