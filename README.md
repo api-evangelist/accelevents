@@ -1,4 +1,4 @@
-# Accelevents (accelevents)
+# Accelevents
 
 <!-- API-EVANGELIST-PROVENANCE:BEGIN -->
 > ### About this repository
@@ -64,82 +64,135 @@
 > Full detail: **[Where this data comes from](https://apievangelist.com/about/where-our-data-comes-from)**
 <!-- API-EVANGELIST-PROVENANCE:END -->
 
-Accelevents is an all-in-one event management and ticketing platform for in-person, virtual, and hybrid events - covering registration, ticketing, agenda and sessions, speakers, exhibitors, networking, and engagement. The **Accelevents Open API** is a REST API (base `https://api.accelevents.com/rest`) authenticated with an organization API key generated from the account Integrations tab (Edit Enterprise → Integrations → API Key) and passed in a request header. It exposes event details, attendees, ticketing orders and sales, ticket holders, sessions, speakers, and attendee networking.
+Accelevents is an all-in-one event management and ticketing platform for in-person, virtual, and hybrid events - covering registration, ticketing, agenda and sessions, speakers, exhibitors, networking, and engagement. The Accelevents Open API is a REST API (base https://api.accelevents.com/rest) authenticated with an organization API key generated from the account Integrations tab. It exposes event details, attendees, ticketing orders and sales, ticket holders, sessions, speakers, and attendee networking. API and webhook access is a paid-plan feature (Business tier and above), so many endpoints are documented publicly but require a provisioned key to exercise.
 
-**Access model (honest note):** the Open API is documented publicly at [developer.accelevents.com](https://developer.accelevents.com/docs/accelevents-api-documentation), but exercising it requires an API key that only an owner-level user on a qualifying paid plan can generate. Per the pricing page, **API & Webhooks are bundled from the Business tier and above** (Professional does not list API access; Enterprise and White Label are custom-quoted). Three endpoints below are **confirmed** directly against the public API reference (event details, all attendees, ticketing orders); the remaining operations are **named in the public reference object catalog** (Session, Speaker, Ticket Holder, Portal People) but their exact request paths are **modeled** here and flagged with `x-endpoint-modeled: true` in the OpenAPI and as `MODELED` in the collections. The authentication header name (`AUTHENTICATION`) is likewise modeled from the getting-started guide - confirm it on the reference before use.
+**Areas:** Event Management · Ticketing · Event · Registration · Virtual Events · Sessions
 
-**APIs.json:** [https://raw.githubusercontent.com/api-evangelist/accelevents/refs/heads/main/apis.yml](https://raw.githubusercontent.com/api-evangelist/accelevents/refs/heads/main/apis.yml)
+## Accelevents on APIs.io
 
-## Tags
+Everything profiled for Accelevents is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/accelevents/](https://apis.io/providers/accelevents/)** — or go straight to one of the APIs or properties below.
 
-- Event Management
-- Ticketing
-- Events
-- Registration
-- Virtual Events
-- Sessions
+### APIs (5)
 
-## Timestamps
+- [Accelevents Attendees API](https://apis.io/apis/accelevents/accelevents-attendees-api/) — Event attendees and people.
+- [Accelevents Events API](https://apis.io/apis/accelevents/accelevents-events-api/) — Event details and configuration.
+- [Accelevents Orders API](https://apis.io/apis/accelevents/accelevents-orders-api/) — Ticketing orders and sales.
+- [Accelevents Sessions API](https://apis.io/apis/accelevents/accelevents-sessions-api/) — Agenda sessions, tracks, and speakers.
+- [Accelevents Tickets API](https://apis.io/apis/accelevents/accelevents-tickets-api/) — Ticket holders and ticket types.
 
-- **Created:** 2026-07-05
-- **Modified:** 2026-07-05
+### Published properties
 
-## APIs
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
 
-### Accelevents Events API
+#### MCP servers (1)
 
-Retrieve event and design details for an event by its unique event URL, and check recurring-event status. The event URL is the unique identifier used across the rest of the API. *Event details retrieval is confirmed; recurring-event paths are modeled.*
+Model Context Protocol servers that expose the API to agents.
 
-- **Human URL:** [https://developer.accelevents.com/reference/event-and-design-details](https://developer.accelevents.com/reference/event-and-design-details)
-- **Base URL:** `https://api.accelevents.com/rest`
+- [accelevents](https://apis.io/servers/accelevents/accelevents/)
 
-### Accelevents Attendees API
+#### Agentic access (1)
 
-List and search event attendees with pagination, filter people by company, job title, and interests, and add attendees to an event. *The all-attendees listing endpoint is confirmed; people-filter and add-attendee paths are modeled.*
+Which operations an agent can call, which act, and which need a human in the loop.
 
-- **Human URL:** [https://developer.accelevents.com/reference/get-all-attendees](https://developer.accelevents.com/reference/get-all-attendees)
-- **Base URL:** `https://api.accelevents.com/rest`
+- [Accelevents Agentic Access](https://apis.io/agentic-access/accelevents/accelevents-agentic-access/)
 
-### Accelevents Ticketing Orders API
+#### Collections (6)
 
-Retrieve ticketing and add-on orders for an event with search, date, and pagination filters, pull dashboard sales data, and export ticket buyer data. *The ticketing-orders endpoint is confirmed; sales-data and CSV-export paths are modeled.*
+Postman and Open Collection request collections.
 
-- **Human URL:** [https://developer.accelevents.com/reference/get-ticketing-orders](https://developer.accelevents.com/reference/get-ticketing-orders)
-- **Base URL:** `https://api.accelevents.com/rest`
+- [Accelevents Open API](https://apis.io/collections/accelevents/open-accelevents/)
+- [Accelevents Open Attendees API](https://apis.io/collections/accelevents/open-accelevents-attendees-api/)
+- [Accelevents Open Attendees Events API](https://apis.io/collections/accelevents/open-accelevents-events-api/)
+- [Accelevents Open Attendees Orders API](https://apis.io/collections/accelevents/open-accelevents-orders-api/)
+- [Accelevents Open Attendees Sessions API](https://apis.io/collections/accelevents/open-accelevents-sessions-api/)
+- [Accelevents Open Attendees Tickets API](https://apis.io/collections/accelevents/open-accelevents-tickets-api/)
 
-### Accelevents Tickets API
+#### Security (3)
 
-Manage individual ticket holders - update ticket-holder attributes by barcode ID, exchange a ticket type for an attendee, and export ticket-holder data. *Named in the public reference object catalog; exact request paths are modeled.*
+Authentication, trust centre, and vulnerability disclosure.
 
-- **Base URL:** `https://api.accelevents.com/rest`
+- [Accelevents Authentication](https://apis.io/security/accelevents/accelevents-authentication/)
+- [Accelevents Domain Security](https://apis.io/security/accelevents/accelevents-domain-security/)
+- [Accelevents Trust Center](https://apis.io/security/accelevents/accelevents-trust-center/)
 
-### Accelevents Sessions API
+#### Plans and pricing (1)
 
-List and update event sessions, manage an attendee's registered/bookmarked sessions, create session tags and tracks, and create and list speakers. *Named in the public reference object catalog (Session, Speaker); exact request paths are modeled.*
+Published plans, tiers and prices.
 
-- **Base URL:** `https://api.accelevents.com/rest`
+- [Accelevents Plans Pricing](https://apis.io/plans/accelevents/accelevents-plans-pricing/)
 
-## Artifacts
+#### Rate limits (1)
 
-- [OpenAPI](openapi/accelevents-openapi.yml)
-- [Postman Collection](collections/accelevents.postman_collection.json)
-- [Open Collection](collections/accelevents.opencollection.json)
-- [Plans](plans/accelevents-plans-pricing.yml)
-- [Rate Limits](rate-limits/accelevents-rate-limits.yml)
-- [FinOps](finops/accelevents-finops.yml)
+Published request limits.
 
-## Common Properties
+- [Accelevents Rate Limits](https://apis.io/rate-limits/accelevents/accelevents-rate-limits/)
 
-- [LinkedIn](https://www.linkedin.com/company/accelevents)
+#### FinOps (1)
+
+What the API costs to run, by operation.
+
+- [Accelevents Finops](https://apis.io/finops/accelevents/accelevents-finops/)
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
+
 - [Website](https://www.accelevents.com)
 - [Documentation](https://developer.accelevents.com/docs/accelevents-api-documentation)
-- [API Reference](https://developer.accelevents.com/reference)
+- [API reference](https://developer.accelevents.com/reference)
+- [Blog](https://www.accelevents.com/blog)
 
-## WebSocket Review
+## API Evangelist rating
 
-Accelevents does **not** expose a documented public WebSocket API. The documented developer surface is request/response REST (the Open API) plus outbound webhooks (a bundled paid-plan feature). In-event real-time features (live streams, chat, networking) are delivered through the hosted application, not a public streaming API. See [review.yml](review.yml).
+**Kin Score 28.6** — thin · rubric 0.25.0 · scored 2026-10-23
 
-## Maintainers
+| Facet | Score |
+|---|---|
+| Discoverability | 68.3 |
+| Contract quality | 50.2 |
+| Contract governance | 0.0 |
+| Operational transparency | 7.9 |
+| Developer ergonomics | 27.4 |
+| Access clarity | 15.8 |
 
-**FN:** Kin Lane
-**Email:** kin@apievangelist.com
+**Agent readiness 44.1** — agent-ready (gated down from agent-native)
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | derived (partial credit) |
+| Reversibility Documented | — |
+| MCP Server | verified |
+| Auth Clarity | served (partial credit) |
+| Idempotency | — |
+| Error Semantics | — |
+| OpenAPI Examples | — |
+| Rate Limit Signal | derived (partial credit) |
+| Event Surface Described | — |
+| Agent Skills | — |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | served (partial credit) |
+| Protected Resource Metadata | verified |
+| Dynamic Client Registration | yes |
+| Agentic Commerce | — |
+| Pagination Ratio | partial |
+| Operation Distinctiveness | distinct |
+
+**Regulatory alignment 16.7** — Horizontal (data, software, accessibility, platform)
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/accelevents/](https://apis.io/providers/accelevents/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Accelevents: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/accelevents/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
